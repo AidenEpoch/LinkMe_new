@@ -6,3 +6,4 @@ argon2-cffi
 starlette
 boto3
 itsdangerous
+python-multipart
