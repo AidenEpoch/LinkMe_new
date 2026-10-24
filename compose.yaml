@@ -1,0 +1,12 @@
+services:
+  linkme:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: linkme-backend:latest
+    container_name: linkme
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:8000:8000"
