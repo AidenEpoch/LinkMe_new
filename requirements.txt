@@ -4,8 +4,4 @@ mysql-connector-python>=8.4,<10
 python-dotenv
 argon2-cffi
 starlette
-starlette.middleware.sessions
-json
 boto3
-python-dotenv
-os
