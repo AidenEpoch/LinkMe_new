@@ -1,0 +1,94 @@
+
+.arrange{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+}
+
+body{
+    margin: 0;
+}
+
+
+/*左側登入畫面*/
+
+.leftSide{
+    background-image: url("/static/image/login_image1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/*左側結束*/
+
+/* 右側登入介面*/
+.inputBlock{
+    width: 600px;
+    height: 60px;
+    border-radius: 20px;
+    font-size: 18px;
+}
+
+.rightSide{
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid gray;
+    gap: 50px;
+    min-height: 100vh;
+    margin-left: 1px;
+    align-items: center;
+}
+
+.loginBtn{
+    width: 600px;
+    height: 40px;
+    background-color: rgb(83, 165, 198);
+    color: white;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.loginSection{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.createBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    width: 600px;
+    height: 40px;
+    margin-top: 40px;
+    border-radius: 30px;
+    border: 1px solid rgb(71, 135, 232);
+    color: rgb(33, 96, 190);
+}
+
+.forgetPassword{
+    cursor: pointer;
+    width: 600px;
+    height: 40px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.forgetPassword:hover{
+    background-color: rgb(175, 173, 173);
+    border-radius: 30px;
+}
+
+.createBtn:hover{
+    background-color: rgb(175, 173, 173);
+    border-radius: 30px;
+}
+
+/*右側結束*/

@@ -1,0 +1,47 @@
+body{
+    margin: 0;
+}
+
+.arrange{
+    display: grid;
+    grid-template-columns: 220px minmax(0, 800px) 220px;
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+
+
+/*主要內容的CSS*/
+.mainSection{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*主要內容的CSS結束*/
+
+/*右導覽列的CSS*/
+.rightNav{
+    width: 200px;
+    position: sticky;
+    right: 200px;
+    margin-top: 30px;
+}
+
+.userAndAvatarBlock{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.user_name{
+    display: flex;
+    align-items: center;
+}
+
+/*右導覽列的CSS結束*/

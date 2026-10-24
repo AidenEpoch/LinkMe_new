@@ -1,0 +1,57 @@
+.registerSection{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.input{
+    width: 500px;
+    height: 60px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 1px solid gray;
+}
+
+.inputForm{
+    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.submitBtn{
+    width: 500px;
+    height: 40px;
+    border-radius: 30px;
+    color: white;
+    background-color:  rgb(58, 138, 169);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+}
+
+.loginBtn{
+    width: 500px;
+    height: 40px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 20px;
+}
+
+.loginBtn:hover{
+    background-color:  rgb(175, 173, 173);
+}
+
+.inputText{
+    font-weight: 700;
+}
+
+.formContent{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}

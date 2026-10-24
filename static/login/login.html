@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/login/login.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="arrange">
+        <!--左側的登入畫面-->
+        <div class="leftSide">
+            
+        </div>
+        <!--左側結束-->
+
+        <!--右側的登入介面-->
+        <div class="rightSide">
+            <div style="margin-left: 30px; margin-top: 60px;">
+                <div style="margin-bottom: 30px; font-size: 20px;">登入LinkMe</div>
+                <div class="loginSection">
+                    <div>
+                        <input type="text" placeholder="用戶名稱或電子郵件地址" class="inputBlock" id="email">
+                    </div>
+                    <div>
+                        <input type="password" placeholder="密碼" class="inputBlock" id="password">
+                    </div>
+                    <div>
+                        <button class="loginBtn" id="logIn">登入</button>
+                    </div>
+                    <div class="forgetPassword">
+                        <div style="text-align: center;">忘記密碼?</div>
+                    </div>
+                </div>
+                <div class="createBtn">
+                    <div id="createAccount">建立新帳號</div>
+                </div>
+            </div>
+            
+        </div>
+        <!--右側結束-->
+    </div>
+
+</body>
+
+<script>
+    const login = document.querySelector("#logIn");
+    let createAccount = document.querySelector("#createAccount");
+
+    async function logInFunc() {
+        const password = document.querySelector("#password").value;
+        const email = document.querySelector("#email").value;
+        const response = await fetch("/api/login",{
+            method: "POST",
+            body: JSON.stringify({"email": email, "password": password}),
+            headers: {"Content-Type": "application/json"}
+        });
+        const result = await response.json();    
+        if(result.ok){
+            window.location.href = "/";
+        }
+    }
+
+    async function goToRegisterPage(){
+        window.location.href = "/register";
+
+    }
+    createAccount.addEventListener("click", goToRegisterPage);
+    login.addEventListener("click", logInFunc);
+
+</script>
+</html>

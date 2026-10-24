@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/register/register.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="registerSection">
+        <div></div>
+        <div class="registerMainSection">
+            <div style="font-size: 20px; font-weight: 700; display: flex;">
+                註冊一個LinkMe帳號
+                <img src="/static/image/linkme_logo_color.png" style="width: 30px; height: 30px;">
+            </div>
+            <div style="margin-bottom: 20px; margin-top: 5px;">請完成以下表格以申請一個LinkMe帳號</div>
+            <div class="inputForm">
+                <div class="formContent">
+                    <div class="inputText">電子郵件地址</div>
+                    <input placeholder="電子郵件地址" class="input" id="email">
+                    <div>你可能會收到我們的通知</div>
+                </div>
+
+                <div class="formContent">
+                    <div class="inputText">密碼</div>
+                    <input placeholder="密碼" class="input" id="password" type="password">
+                </div>
+
+                <div class="formContent">
+                    <div class="inputText">再次確認密碼</div>
+                    <input placeholder="請再輸入一次密碼" class="input" id="passwordAgain" type="password">
+                </div>
+
+                <div class="formContent">
+                    <div class="inputText">用戶名稱</div>
+                    <input placeholder="用戶名稱" class="input" id="userName">
+                </div>
+                <div>點按「提交」即表示你同意建立帳號，也同意 LinkMe 的 《使用條款》、《隱私政策》和《Cookies政策》</div>
+                <div class="submitBtn" id="submitBtn">
+                    <div>提交</div>
+                </div>
+
+            </div>
+            <div class="loginBtn" id="goToLogin">
+                    <div>已經有帳號</div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+</body>
+<script>
+    const toLogin = document.querySelector("#goToLogin");
+
+    const submitReg = document.querySelector("#submitBtn");
+    function goToLogin(){
+        window.location.href = "/";
+    }
+
+    async function submitRegister(){
+        const password = document.querySelector("#password").value;
+        const passwordAgain = document.querySelector("#passwordAgain").value;
+        const email = document.querySelector("#email").value;
+        const userName = document.querySelector("#userName").value;
+        if(password != passwordAgain){
+            alert("請確認兩次輸入的密碼為相同");
+            return
+        }else if(password == "" || email == "" || userName == ""){
+            alert("請確認所有欄位皆輸入完成");
+            return
+        }else{
+            const response = await fetch("/api/register", {
+                method: "POST",
+                body: JSON.stringify({"userName": userName, "password": password, "email": email}),
+                headers:{"Content-Type": "application/json"}
+            })
+
+            const result = await response.json();
+            if(result.ok){
+                window.location.href = "/";
+            }else{
+                alert("伺服器異常");
+            }
+        }
+    }
+    submitReg.addEventListener("click", submitRegister);
+    toLogin.addEventListener("click", goToLogin);
+</script>
+</html>
