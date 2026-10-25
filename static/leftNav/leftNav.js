@@ -7,6 +7,7 @@ const searchBlock = document.querySelector("#searchBlock");
 const linkMeBlock = document.querySelector("#linkMeBlock");
 const messageBlock = document.querySelector("#messageBlock");
 const userBlock = document.querySelector("#userBlock");
+const logoutBlock = document.querySelector("#logoutBlock");
 
 const postDialog = document.querySelector("#postDialog");
 const closePostWindow = document.querySelector("#closePostWindow");
@@ -15,6 +16,9 @@ const closePostWindow = document.querySelector("#closePostWindow");
 
 const homePageIcon = document.querySelector("#homePageIcon");
 
+logoutBlock.addEventListener("mouseenter", logoutSelect);
+logoutBlock.addEventListener("mouseleave", logoutLeave);
+logoutBlock.addEventListener("click", logoutLinkMe);
 
 leftNavShow.addEventListener("mouseenter", showHiddenNav);
 leftNavHidden.addEventListener("mouseleave", hideNav);
@@ -51,12 +55,33 @@ userBlock.addEventListener("click", goToUser);
 
 closePostWindow.addEventListener("click", closePostDialogWindow);
 
+
+async function logoutLinkMe(){
+    const response = await fetch("/api/logout", {
+        method: "POST"
+    })
+    const result = await response.json();
+    if(result.ok){
+        window.location.href = "/";
+    }
+}
+
 function closePostDialogWindow(){
     postDialog.close();
 }
 
 async function goToMessage() {
     
+}
+
+function logoutSelect(){
+    logoutBlock.style.backgroundColor = "rgb(177, 176, 176)";
+    logoutBlock.style.borderRadius = "10px";
+}
+
+function logoutLeave(){
+    logoutBlock.style.backgroundColor = "";
+    logoutBlock.style.borderRadius = "";
 }
 
 
@@ -198,9 +223,145 @@ function clubLeave(){
 function showHiddenNav(){
     leftNavHidden.style.display = "flex";
     leftNavShow.style.display = "none";
+    logoutBlock.style.display = "grid";
 }
 
 function hideNav(){
     leftNavHidden.style.display = "none";
     leftNavShow.style.display = "flex";
+    logoutBlock.style.display = "none";
+}
+
+
+
+
+/*  #################################### 貼文 ########################################## */
+
+const uploadBtn = document.querySelector("#uploadBtn");
+const postDialogNext = document.querySelector("#postDialogNext");
+const postPreview = document.querySelector("#postPreview");
+const returnToFirst = document.querySelector("#returnToFirst");
+const goToNextStepBtn = document.querySelector("#goToNextStep");
+const postDialogLast = document.querySelector("#postDialogLast");
+const postTheCreate = document.querySelector("#postTheCreate");
+const returnToSecond = document.querySelector("#returnToSecond");
+const closePostWindowLast = document.querySelector("#closePostWindowLast");
+
+const closePostWindowNext = document.querySelector("#closePostWindowNext");
+
+let previewURL = null;
+
+uploadBtn.addEventListener("change", goToNextUpload);
+
+returnToFirst.addEventListener("click", returnToFirstPostPage);
+
+closePostWindowNext.addEventListener("click", closeNextWindow);
+
+returnToSecond.addEventListener("click", returnToSecondStep);
+
+closePostWindowLast.addEventListener("click", closeFinalWindow);
+
+function closeFinalWindow(){
+    postDialogLast.close();
+}
+
+function returnToSecondStep(){
+    postDialogNext.showModal();
+    postDialogLast.close();
+}
+
+goToNextStepBtn.addEventListener("click", goToPostStep);
+
+function goToPostStep(){
+    const file = uploadBtn.files[0];
+    if (!file){
+        return;
+    }else{
+        console.log("file: ", file);
+        if(!file.type.startsWith("image/")){
+            alert("目前只支援圖片");
+            return;
+        }
+
+        if(previewURL){
+            URL.revokeObjectURL(previewURL);
+        }
+        let previewBeforePost = document.querySelector("#previewBeforePost");
+        previewURL = URL.createObjectURL(file);
+        previewBeforePost.style.backgroundImage = `url(${previewURL})`;
+        previewBeforePost.style.backgroundSize = "cover";
+        previewBeforePost.style.backgroundRepeat = "no-repeat";
+        postDialogLast.showModal();
+        postDialogNext.close();
+        closePostWindowLast.style.display = "block";
+    }
+}
+
+function returnToFirstPostPage(){
+    postDialog.showModal();
+    postDialogNext.close();
+    closePostWindowNext.style.display = "none";
+    closePostWindow.style.display = "block";
+}
+
+function closeNextWindow(){
+    postDialogNext.close();
+}
+
+function goToNextUpload(){
+    const file = uploadBtn.files[0];
+    if (!file){
+        return;
+    }else{
+        console.log("file: ", file);
+        if(!file.type.startsWith("image/")){
+            alert("目前只支援圖片");
+            return;
+        }
+
+        if(previewURL){
+            URL.revokeObjectURL(previewURL);
+        }
+        previewURL = URL.createObjectURL(file);
+        postPreview.style.backgroundImage = `url(${previewURL})`;
+        postPreview.style.backgroundSize = "cover";
+        postPreview.style.backgroundRepeat = "no-repeat";
+        postDialog.close();
+        postDialogNext.showModal();
+        closePostWindowNext.style.display = "block";
+    }
+}
+
+postTheCreate.addEventListener("click", postIt);
+
+async function postIt() {
+    const file = uploadBtn.files[0];
+    const postContent = document.querySelector("#postContent")
+    const text = postContent.value;
+    let formdata = new FormData();
+    formdata.append("file", file);
+    formdata.append("text", text);
+    const response = await fetch("/api/postUpload", {
+        method: "Post",
+        body: formdata,
+    });
+    const result = await response.json();
+    let user_name = result.data;
+    if(result.ok){
+        window.location.href = `/${user_name}`;
+    }
+}
+
+const postContent = document.querySelector("#postContent");
+const remainingCount = document.querySelector("#remainingCount");
+
+const maxLength = 2200;
+
+postContent.addEventListener("input", remainingwords);
+
+function remainingwords(){
+    const currentLength = postContent.value.length;
+    const remaining = maxLength - currentLength;
+
+    remainingCount.textContent = `${currentLength} / ${maxLength}`;
 }

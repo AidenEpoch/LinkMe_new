@@ -79,9 +79,14 @@
                 <div class="navBanner">個人檔案</div>
             </div>
 
+            <div class="navBlockHidden logoutBlock" id="logoutBlock">
+                <img src="/static/image/logout.png" class="navIcon">
+                <div class="navBanner">登出</div>
+            </div>
+
         </nav>
 
-        <!-- 左導覽列的互動式視窗 -->
+        <!-- 左導覽列的貼文互動式視窗 -->
         <dialog id="postDialog" class="postWindow">
             <img src="/static/image/close.png" class="closeDialog" id="closePostWindow"></img>
             <div class="postDialogBanner">建立新貼文</div>
@@ -92,7 +97,41 @@
                 <input type="file" id="uploadBtn" hidden accept="image/*, video/*"></input>
             </div>
         </dialog>
-        <!-- 左導覽列的互動式視窗  結束-->
+
+        <dialog id="postDialogNext" class="postWindow">
+            <img src="/static/image/close.png" class="closeDialog" id="closePostWindowNext"></img>
+            <div class="previewBanner">
+                <img src="/static/image/return.png" id="returnToFirst" style="width: 24px; height: 20px; cursor: pointer; display: flex; justify-content: flex-start; align-items: center;">
+                <div style="margin-left: 15px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500;">預覽圖片</div>
+                <div id="goToNextStep" class="goToNextStep">下一步</div>
+            </div>
+            <hr>
+            <div>
+                <div id="postPreview" alt="預覽圖片" class="postPreview"></div>
+            </div>
+        </dialog>
+        <dialog id="postDialogLast" class="postWindowFinal">
+            <img src="/static/image/close.png" class="closeDialog" id="closePostWindowLast"></img>
+            <div class="previewBanner">
+                <img src="/static/image/return.png" id="returnToSecond" style="width: 24px; height: 20px; cursor: pointer; display: flex; justify-content: flex-start; align-items: center;">
+                <div style="margin-left: 15px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500;">預覽貼文</div>
+                <div id="postTheCreate" class="goToNextStep">發布</div>
+            </div>
+            <hr>
+            <div class="postPageArr">
+                <div id="previewBeforePost" alt="預覽圖片" class="postPreview"></div>
+                <div class="postContentSection">
+                    <div>用戶</div>
+                    <div class="postInputContainer">
+                        <textarea id="postContent" class="postContentInput" placeholder="分享點什麼吧!"  maxlength="2200"></textarea>
+                        <div id="remainingCount" class="remainingCount">
+                            0 / 2200
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+        <!-- 左導覽列的貼文互動式視窗  結束-->
 
         <!--以上為左邊的導覽列-->
 

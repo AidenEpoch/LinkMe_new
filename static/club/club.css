@@ -1,6 +1,6 @@
 .arrange{
     display: grid;
-    grid-template-columns: 220px minmax(0, 800px) 220px;
+    grid-template-columns: 220px minmax(0, 1200px) 220px;
     min-height: 100vh;
     width: 100%;
 }

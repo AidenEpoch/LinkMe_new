@@ -6,7 +6,7 @@ from argon2 import PasswordHasher
 from argon2.exceptions import (VerifyMismatchError, VerificationError)
 from starlette.middleware.sessions import SessionMiddleware
 from database import db_pool
-from routers import auth, login, pages, register, user, match, post
+from routers import auth, login, pages, register, user, match, post, logout
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -41,6 +41,12 @@ app.include_router(register.router)
 app.include_router(login.router)
 ################################# 登陸的api 結束 ###########################################
 
+
+################################ 登出的 api ################################
+
+app.include_router(logout.router)
+
+############################### 登出的 api 結束 #######################
 
 
 ################################# 貼文的api ###########################################

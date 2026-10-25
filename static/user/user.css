@@ -1,6 +1,6 @@
 .userSection{
     display: grid;
-    grid-template-columns: 220px minmax(0, 800px) 220px;
+    grid-template-columns: 220px minmax(0, 1200px) 220px;
     min-height: 100vh;
     width: 100%;
 }
@@ -25,6 +25,7 @@ body{
     margin-left: 50px;
     gap: 10px;
     width: 960px;
+    margin-bottom: 30px;
 }
 
 .avatarAndOther{
@@ -94,3 +95,52 @@ body{
     font-weight: 700;
 }
 /*中間內容結束*/
+
+
+
+.userPostContainer {
+    width: 100%;
+    max-width: 935px;
+}
+
+.userPostTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px;
+    border-top: 1px solid #dbdbdb;
+    font-weight: bold;
+}
+
+.userPostGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+}
+
+.userPostItem {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.userPostItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.userPostItem:hover img {
+    transform: scale(1.04);
+}
+
+@media (max-width: 600px) {
+    .userPostGrid {
+        gap: 2px;
+    }
+}
