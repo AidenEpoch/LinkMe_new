@@ -22,6 +22,29 @@ body{
     flex-direction: column;
 }
 
+.postContainer{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+.postSect{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 1px solid rgb(175, 173, 173);
+    width: 400px;
+    height: 600px;
+}
+
+.postBanner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
 /*主要內容的CSS結束*/
 
