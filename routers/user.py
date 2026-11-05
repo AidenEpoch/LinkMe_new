@@ -57,7 +57,7 @@ async def getProfileInformation(request: Request, user_name: str):
         )
     else:
         sql = """
-            SELECT id, user_name, display_name FROM users WHERE user_name = %s;
+            SELECT id, user_name, display_name, avatar_url FROM users WHERE user_name = %s;
         """
         con = db_pool.get_connection()
         cursor = con.cursor(dictionary = True)
@@ -67,16 +67,44 @@ async def getProfileInformation(request: Request, user_name: str):
             if(user == None):
                 return JSONResponse(
                     status_code = 404,
-                    content = {"error": True, "message": "找不到這位使用者"}
+                    content = {"error": True, "message": "找不到這位使用者", "no_user": True}
                 )
             is_owner = (user["id"] == int(user_id))
+            sql = """
+                SELECT COUNT(*) AS postNumber FROM posts WHERE user_id = %s;
+            """
+            cursor.execute(sql, (user["id"],))
+            postNumber = cursor.fetchone()
+            postNumber = postNumber["postNumber"]
+            print(f"postNumber: {postNumber}")
+
+            sql = """
+                SELECT COUNT(*) AS followerNumber FROM follows WHERE following_id = %s;
+            """
+
+            cursor.execute(sql, (user["id"],))
+            followerNumber = cursor.fetchone()
+            followerNumber = followerNumber["followerNumber"]
+
+            sql = """
+                SELECT COUNT(*) AS followingNumber FROM follows WHERE follower_id = %s;
+            """
+
+            cursor.execute(sql, (user["id"],))
+            followingNumber = cursor.fetchone()
+            followingNumber = followingNumber["followingNumber"]
+
             return JSONResponse(
                 status_code = 200,
                 content = {"ok": True, 
                            "data": {
                                "user_name": user["user_name"],
                                "display_name": user["display_name"],
-                               "is_owner": is_owner
+                               "is_owner": is_owner,
+                               "postNumber": postNumber,
+                               "followerNumber": followerNumber,
+                               "followingNumber": followingNumber,
+                               "avatar_url": user["avatar_url"]
                            }}
             )
         except Exception as e:

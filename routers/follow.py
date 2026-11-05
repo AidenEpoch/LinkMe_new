@@ -130,7 +130,7 @@ async def checkFollow(request: Request, followingName: str):
         check = cursor.fetchone()
         if(check == None):
             return JSONResponse(
-                status = 200,
+                status_code = 200,
                 content = {"not_follow": True, "messae": "沒有追蹤"}
             )
         else:

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/index/index.css">
+    <link rel="stylesheet" href="/static/leftNav/leftNav.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="arrange">  <!--首頁的畫面配置: 左導覽   主要內容(貼文等等)  右導覽(推薦、社群(社群推薦)等等)-->
+        {% include "components/leftNav.html" %}
+        {% include "components/message.html" %}
+        <!--主要內容區-->
+        <div class="mainSection">
+            <div class="friendStatusContainer" id="friendStatusContainer"></div>
+            <div class="postContainer" id="postContainer"></div>
+            <div id="sentinel"></div>
+        </div>
+        <!--以上為主要內容區-->
+
+        <!--右導覽列-->
+        <nav class="rightNav">
+            <div class="userAndAvatarBlock">
+                <img src="/static/image/avatar_default.png" style="width: 60px; height: 60px; cursor: pointer;" id="userAvatar">
+                <div id="user_name" class="user_name"></div>
+            </div>
+            <div>為你推薦</div>
+        </nav>
+        <!--以上為右導覽列-->
+
+        {% include "components/chat.html" %}
+    </div>
+    
+</body>
+<script src="/static/index/index.js"></script>
+</html>

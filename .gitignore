@@ -33,3 +33,4 @@ uploads/
 # OS files
 .DS_Store
 Thumbs.db
+linkme_schema.sql

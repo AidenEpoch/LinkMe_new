@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/leftNav/leftNav.css">
+    <link rel="stylesheet" href="/static/search/search.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="arrange">
+        {% include "components/leftNav.html" %}
+        {% include "components/message.html" %}
+        {% include "components/chat.html" %}
+
+        <!--  搜尋的主要頁面 -->
+        <div class="searchMainBlock" id="searchMainShow">
+            <div class="searchBar" id="searchBarShow">
+                <img src="/static/image/return.png" class="returnBtn" id="returnBtn">
+                <input type="text" class="searchInput" placeholder="搜尋" id="searchInput"></input>
+                <img src="/static/image/littleSearch.png" class="searchIcon" id="searchIcon">
+            </div>
+            <div class="recommendContainer" id="recommendContainer"></div>
+            <div class="searchContainer" id="searchContainer"></div>
+        </div>
+          <!--  搜尋的主要頁面結束  -->
+    </div>
+    
+</body>
+<script src="/static/search/search.js"></script>
+</html>

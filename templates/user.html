@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/user/user.css">
+    <link rel="stylesheet" href="/static/leftNav/leftNav.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="userSection">
+        {% include "components/leftNav.html" %}
+        {% include "components/message.html" %}
+        <!--中間內容-->
+        <div class="mainSection"> 
+            <div class="mainUpper">
+                <div class="avatarAndOther">
+                    <div class="avatar_img" id="avatar_img"></div>
+                    <div class="nameAndBio">
+                        <div class="name" id="avatar_name">Name</div>
+                        <div class="Fans">
+
+                            <div style="display: flex; align-items: center; text-align: center;">
+                                <div id="postNumber" class="numberPresent"></div>貼文
+                            </div>
+
+                            <div style="display: flex; align-items: center; text-align: center;">
+                                <div id="followerNumber" class="numberPresent"></div>位粉絲
+                            </div>
+
+                            <div style="display: flex; align-items: center; text-align: center;">
+                                <div id="followingNumber" class="numberPresent"></div>追蹤中
+                            </div>
+                        </div>
+                        <div>
+                            <div>寫點甚麼吧</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="functionBtn">
+                    <div class="editProfile" id="editProfileBtn">
+                        <div>編輯個人檔案</div>
+                    </div>
+                    <div class="readStore" id="readStoreBtn">
+                        <div>查看典藏</div>
+                    </div>
+                    <div class="followBtn" id="followBtn">
+                        <div id="followWord">追蹤</div>
+                    </div>
+                </div>
+                <div class="threads">
+                    <div class="thread"></div>
+                </div>
+                <hr>
+            </div>
+            <div class="postContainer" id="postContainer">
+                <div id="userPostGrid" class="userPostGrid"></div>
+            </div>
+        </div>
+        <dialog id="postShow" class="postShow">
+            <img src="/static/image/close.png" class="closeDialog" id="closePostShow"></img>
+        </dialog>
+
+        <dialog id="setAvatar">
+            <div id="avatarBanner">變更大頭貼照</div>
+            <div id="setAvatarSection">
+                <div id="uploadAvatar" class="avatarBlock">上傳照片</div>
+                <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+                <div id="removeAvatar" class="avatarBlock">移除目前的大頭貼照</div>
+                <div id="closeAvatarSet" class="avatarBlock">取消</div>
+            </div>
+        </dialog>
+        <!--中間內容結束-->
+        {% include "components/chat.html" %}
+    </div>
+</body>
+
+<script src="/static/user/user.js"></script>
+</html>

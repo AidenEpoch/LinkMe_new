@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/leftNav/leftNav.css">
+    <link rel="stylesheet" href="/static/linkme/linkme.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="arrange">
+        {% include "components/leftNav.html" %}
+        {% include "components/message.html" %}
+        <div class="linkMeSection">
+            <div class="linkMeBanner">配對成功</div>
+            <div class="linkMeMainBlock">
+                <img id="linkMeAvatar">
+                <div id="linkMeUserName"></div>
+                <div class="bioBlock">
+                    <div>個人簡介:</div>
+                    <div id="linkMeBio"></div>
+                </div>
+                <div class="selectBlock">
+                    <div class="linkMeBtn">追蹤</div>
+                    <div class="linkMeBtn">遺憾拒絕</div>
+                </div>
+            </div>
+        </div>
+        {% include "components/chat.html" %}
+    </div>
+</body>
+<script src="/static/linkme/linkme.js"></script>
+</html>

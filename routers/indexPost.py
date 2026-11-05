@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Query
+from datetime import datetime
 from fastapi.responses import JSONResponse
 import mysql.connector
 import json
@@ -9,12 +10,21 @@ router = APIRouter()
 cloudfront_name = "d32lm1ug1ggsp6.cloudfront.net"
 
 @router.get("/api/indexPost")
-async def getIndexPost(request: Request):
-    user_id = request.session["user_id"]
+async def getIndexPost(
+    request: Request,
+    cursor_id: int | None = Query(default = None, ge = 1),
+    cursor_time: datetime | None = None
+    ):
+    user_id = request.session.get("user_id")
     if(user_id == None):
         return JSONResponse(
             status_code = 401,
             content = {"error": True, "message": "尚未登入"}
+        )
+    if (cursor_id == None) != (cursor_time == None):
+        return JSONResponse(
+            status_code = 501,
+            content = {"error": True, "message": f"游標參數不完整"}
         )
     con = None
     cursor = None
@@ -48,10 +58,32 @@ async def getIndexPost(request: Request):
             INNER JOIN users AS u
                 ON p.user_id = u.id
             WHERE f.follower_id = %s
-            ORDER BY p.created_at DESC, p.id DESC;
         """
-        cursor.execute(sql, (user_id,))
+        params = []
+        params.append(user_id)
+        if(cursor_time is not None):
+            sql += """
+                AND (p.created_at < %s OR (p.created_at = %s AND p.id < %s))
+            """
+            params.extend([cursor_time, cursor_time, cursor_id])
+        sql += """
+            ORDER BY p.created_at DESC, p.id DESC
+            LIMIT 11;
+        """
+        cursor.execute(sql, tuple(params))
         posts = cursor.fetchall()
+
+        hasMore = len(posts) > 10
+        posts = posts[:10]
+        nextCursor = None
+
+        if((hasMore == True) and posts):
+            last_post = posts[-1]
+            nextCursor = {
+                "cursor_time": last_post["created_at"].isoformat(),
+                "cursor_id": last_post["id"]
+            }
+
         for post in posts:
             post["created_at"] = post["created_at"].isoformat()
             image_key = post["image_key"]
@@ -66,7 +98,7 @@ async def getIndexPost(request: Request):
                 post["image_url"] = f"https://{cloudfront_name}/{image_key}"
         return JSONResponse(
             status_code = 200,
-            content = {"ok": True, "posts": posts}
+            content = {"ok": True, "posts": posts, "hasMore":hasMore, "nextCursor": nextCursor }
         )
 
     except Exception as e:

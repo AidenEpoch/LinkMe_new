@@ -46,6 +46,30 @@ body{
     text-align: center;
 }
 
+.friendStatusContainer{
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 30px;
+}
+
+.friendStatusCircle{
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    border: 1px gray solid; 
+    cursor: pointer;
+}
+
+.friendStatusDisplayName{
+    display: flex;
+    justify-content: center;
+}
+
+#sentinel{
+    width: 100%;
+    height: 1px;
+}
+
 /*主要內容的CSS結束*/
 
 /*右導覽列的CSS*/

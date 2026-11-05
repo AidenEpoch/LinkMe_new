@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/leftNav/leftNav.css">
+    <link rel="stylesheet" href="/static/club/club.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="arrange">
+        {% include "components/leftNav.html" %}
+        {% include "components/message.html" %}
+        {% include "components/chat.html" %}
+        <div id="clubMainSection">
+            <div></div>
+            <div class="contentMainSection"> 
+                <div class="MainBanner">探索社群</div>
+                <div class="clubSearchSect">
+                    <img src="/static/image/littleSearch.png" class="clubSearchIcon">
+                    <input placeholder="來探索社群吧" type="text" class="clubSearchInput">
+                </div>
+                <div class="clubListSection"></div>
+            </div>  
+            <div></div>
+        </div>
+        <div id="myClubSection">
+            <div id="myClubBanner">我的社群:</div>
+            <div id="myClubContainer"></div>
+        </div>
+    </div>
+</body>
+<script src="/static/leftNav/leftNav.js"></script>
+</html>

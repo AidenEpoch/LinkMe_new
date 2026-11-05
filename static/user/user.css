@@ -40,9 +40,9 @@ body{
     width: 120px;
     border-radius: 50%;
     border: 1px solid gray;
-    background-image: url("/static/image/avatar_default.png");
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
 
 .Fans{
@@ -50,6 +50,14 @@ body{
     grid-template-columns: 1fr 1fr 1fr;
     margin-bottom: 10px;
     width: 60%;
+}
+
+.numberPresent{
+    text-align: center;
+    display: flex;
+    padding-top: 2px;
+    margin-right: 5px;
+    font-weight: 600;
 }
 
 .name{
@@ -109,6 +117,67 @@ body{
 }
 /*中間內容結束*/
 
+#setAvatar{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0;
+}
+
+#setAvatar[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+#setAvatar::backdrop{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#setAvatarSection{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 100%;
+}
+
+#closeAvatarSet{
+    cursor: pointer;
+}
+
+#avatarBanner{
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.avatarBlock{
+    border-top: 1px solid rgb(175, 173, 173);
+    border-bottom: 1px solid rgb(175, 173, 173);
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+#uploadAvatar{
+    color: rgb(91, 147, 203);
+}
+
+#removeAvatar{
+    color: rgb(223, 43, 43);
+}
 
 
 .userPostContainer {

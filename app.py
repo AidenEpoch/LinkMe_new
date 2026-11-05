@@ -6,7 +6,7 @@ from argon2 import PasswordHasher
 from argon2.exceptions import (VerifyMismatchError, VerificationError)
 from starlette.middleware.sessions import SessionMiddleware
 from database import db_pool
-from routers import auth, login, pages, register, user, match, post, logout, follow, link, indexPost
+from routers import auth, login, pages, register, user, match, post, logout, follow, link, indexPost, edit, search, indexFriendStatus, notify, linkmeuser, avatarUpload
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -24,10 +24,28 @@ app.add_middleware(
 )
 
 
-
 ##############################################  各種頁面   ############################################################
 app.include_router(pages.router)
 ################################################ 各種頁面結束   ####################################################
+
+###############################################  通知  #######################################################
+
+app.include_router(notify.router)
+##########################################################################################################
+
+
+############################################### LinkMe 頁面 ##############################################
+
+app.include_router(linkmeuser.router)
+
+########################################################################################################
+
+
+###########################################  編輯  ##############################################################
+
+app.include_router(edit.router)
+
+##############################################################################################################
 
 
 ##############################################  追蹤   ############################################################
@@ -43,6 +61,12 @@ app.include_router(indexPost.router)
 ################################# 註冊的api ###########################################
 app.include_router(register.router)
 ############################### 註冊的api 結束 #######################################
+
+##############################  搜尋的api #############################################
+
+app.include_router(search.router)
+
+############################ 搜尋的api結束 ############################################
 
 
 
@@ -77,12 +101,15 @@ app.include_router(auth.router)
 
 app.include_router(user.router)
 
+app.include_router(indexFriendStatus.router)
+
 ################################# 取得 user 資訊的 api 結束 #########################################
 
 ################################
 
 app.include_router(match.router)
 
+app.include_router(avatarUpload.router)
 
 
 app.mount("/static", StaticFiles(directory = "static"))

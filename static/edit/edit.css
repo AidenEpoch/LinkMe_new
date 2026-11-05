@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+}
+
+.editArrange{
+    display: grid;
+    grid-template-columns: 220px  400px minmax(0, 800px);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.editList{
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px gray solid;
+}
+
+.editListBanner{
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.editListItems{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.editItemBanner{
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: rgb(104, 103, 103);
+}
+
+.itemBtn{
+    cursor: pointer;
+    padding: 10px;
+    width: 80%;
+}
+
+.itemBtn:hover{
+    background-color: rgb(177, 176, 176);
+    border-radius: 10px;
+}

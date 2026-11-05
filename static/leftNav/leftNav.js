@@ -12,7 +12,7 @@ const logoutBlock = document.querySelector("#logoutBlock");
 const postDialog = document.querySelector("#postDialog");
 const closePostWindow = document.querySelector("#closePostWindow");
 
-
+let isMessageOpen = false;
 
 const homePageIcon = document.querySelector("#homePageIcon");
 
@@ -55,6 +55,37 @@ userBlock.addEventListener("click", goToUser);
 
 closePostWindow.addEventListener("click", closePostDialogWindow);
 
+document.addEventListener("DOMContentLoaded", ()=>{
+    getNotification();
+    getLinkMeRemaining();
+});
+
+let reminderHidden = document.querySelector("#reminderHidden");
+let notified_reminderIconHidden = document.querySelector("#notified_reminderIconHidden");
+let reminderIcon = document.querySelector("#reminderIcon");
+let notified_reminderIcon = document.querySelector("#notified_reminderIcon");
+
+async function getNotification() {
+    const response = await fetch("/api/notificationGet",{
+        method: "GET"
+    });
+    const result = await response.json();
+    if(result.ok){
+        if(result.hasNotification){
+            notified_reminderIconHidden.style.display = "block";
+            notified_reminderIcon.style.display = "block";
+            reminderHidden.style.display = "none";
+            reminderIcon.style.display = "none";
+
+        }else{
+            notified_reminderIconHidden.style.display = "none";
+            notified_reminderIcon.style.display = "none";
+            reminderHidden.style.display = "block";
+            reminderIcon.style.display = "block";
+        }
+    }
+}
+
 
 async function logoutLinkMe(){
     const response = await fetch("/api/logout", {
@@ -68,6 +99,7 @@ async function logoutLinkMe(){
 
 function closePostDialogWindow(){
     postDialog.close();
+    document.body.style.overflow = "";
 }
 
 async function goToMessage() {
@@ -85,18 +117,6 @@ function logoutLeave(){
 }
 
 
-
-async function goToLinkMe() {
-    const response = await fetch("/api/auth", {
-        method: "GET"
-    })
-    const result = await response.json();
-    if(result.ok){
-        window.location.href = "/linkme";
-    }else{
-        window.location.href = "/";
-    }
-}
 
 async function goToSearch(){
     const response = await fetch("/api/auth", {
@@ -143,6 +163,7 @@ async function goToClub(){
 function goToPost(){
     postDialog.showModal();
     closePostWindow.style.display = "block";
+    document.body.style.overflow = "hidden";
 }
 
 function goToHome(){
@@ -221,12 +242,18 @@ function clubLeave(){
 
 
 function showHiddenNav(){
+    if(isMessageOpen){
+        return;
+    }
     leftNavHidden.style.display = "flex";
     leftNavShow.style.display = "none";
     logoutBlock.style.display = "grid";
 }
 
 function hideNav(){
+    if(isMessageOpen){
+        return;
+    }
     leftNavHidden.style.display = "none";
     leftNavShow.style.display = "flex";
     logoutBlock.style.display = "none";
@@ -263,11 +290,13 @@ closePostWindowLast.addEventListener("click", closeFinalWindow);
 
 function closeFinalWindow(){
     postDialogLast.close();
+    document.body.style.overflow = "";
 }
 
 function returnToSecondStep(){
     postDialogNext.showModal();
     postDialogLast.close();
+    document.body.style.overflow = "hidden";
 }
 
 goToNextStepBtn.addEventListener("click", goToPostStep);
@@ -302,10 +331,12 @@ function returnToFirstPostPage(){
     postDialogNext.close();
     closePostWindowNext.style.display = "none";
     closePostWindow.style.display = "block";
+    document.body.style.overflow = "hidden";
 }
 
 function closeNextWindow(){
     postDialogNext.close();
+    document.body.style.overflow = "";
 }
 
 function goToNextUpload(){
@@ -364,4 +395,52 @@ function remainingwords(){
     const remaining = maxLength - currentLength;
 
     remainingCount.textContent = `${currentLength} / ${maxLength}`;
+}
+
+
+
+/* LinkMe 頁面 */
+let linkMeDialog = document.querySelector("#linkMeDialog");
+let linkMeCloseDialog = document.querySelector("#linkMeCloseDialog");
+let linkMeDialogBtn = document.querySelector("#linkMeDialogBtn");
+
+linkMeCloseDialog.addEventListener("click", closeLinkMeSection);
+linkMeDialogBtn.addEventListener("click", startLinkMe);
+
+async function goToLinkMe() {
+    const response = await fetch("/api/auth", {
+        method: "GET"
+    })
+    const result = await response.json();
+    if(result.ok){
+        linkMeDialog.showModal();
+        document.body.style.overflow = "hidden";
+    }else{
+        window.location.href = "/";
+    }
+}
+
+function closeLinkMeSection(){
+    linkMeDialog.close();
+    document.body.style.overflow = "";
+}
+
+async function getLinkMeRemaining() {
+    const response = await fetch("/api/match/remaining",{
+        method: "GET"
+    });
+    const result = await response.json();
+    if(result.ok){
+        linkMeDialogBtn.innerText = `LinkMe(${result.remaining} / 3)`
+    }
+}
+
+async function startLinkMe() {
+    const response = await fetch("/api/match/draw", {
+        method: "POST"
+    })
+    const result = await response.json();
+    if(result.ok){
+        window.location.href = `/linkme/${result.matched_user.user_name}`;
+    }
 }

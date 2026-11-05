@@ -139,7 +139,7 @@ async def getOthersPost(request: Request, user: str):
         else:
             print(f"user:{user_data['id']}")
             sql = """
-                SELECT content, image_key, created_at, id FROM posts WHERE user_id = %s ORDER BY created_at DESC, id DESC;
+                SELECT content, image_key, created_at, id FROM posts WHERE user_id = %s ORDER BY created_at DESC, id DESC LIMIT 12;
             """
             userID = user_data["id"]
             name = user_data["display_name"]

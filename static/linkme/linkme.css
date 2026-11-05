@@ -8,3 +8,66 @@ body{
     min-height: 100vh;
     width: 100%;
 }
+
+.linkMeSection{
+    grid-column: 2;
+    position: relative;
+}
+
+#linkMeAvatar{
+    height: 200px;
+    width: 200px;
+}
+
+.linkMeMainBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.linkMeBanner{
+    font-size: 24px;
+    font-weight: 600;
+    text-align: left;
+    padding-left: 30px;
+}
+
+#linkMeUserName{
+    font-size: 20px;
+    font-size: 500;
+    color: rgb(74, 140, 192);
+    margin-bottom: 20px;
+}
+
+#linkMeBio{
+
+}
+
+.bioBlock{
+    border: 1px solid gray;
+    min-height: 300px;
+    width: 75%;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.selectBlock{
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.linkMeBtn{
+    width: 15%;
+    height: 30px;
+    background-color: rgb(47, 154, 175);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+}

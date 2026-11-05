@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/leftNav/leftNav.css">
+    <link rel="stylesheet" href="/static/edit/edit.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="editArrange">
+        {% include "components/leftNav.html" %}
+        {% include "components/message.html" %}
+        {% include "components/chat.html" %}
+        <div class="editList">
+            <div class="editListBanner">設定</div>
+            <div class="editListItems">
+                <div>
+                    <div class="editItemBanner">你的帳號</div>
+                    <div class="itemBtn">修改密碼、更換email、其他需求</div>
+                </div>
+
+                <div>
+                    <div class="editItemBanner">你的LinkMe</div>
+                    <div>
+                        <div class="itemBtn">編輯個人檔案</div>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <div class="editItemBanner">誰可以看到你的內容</div>
+                        <div class="itemBtn">帳號隱私設定</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="thirdSection" id="editProfile">
+            {% include "editComponents/editProfile.html" %}
+        </div>
+    </div>
+</body>
+</html>
