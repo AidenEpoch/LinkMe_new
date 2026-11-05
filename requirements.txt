@@ -7,3 +7,4 @@ starlette
 boto3
 itsdangerous
 python-multipart
+jinja2
