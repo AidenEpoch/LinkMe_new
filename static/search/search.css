@@ -15,6 +15,7 @@ body{
     align-items: center;
     width: 100%;
     height: 40px;
+    justify-content: center;
 }
 
 
@@ -23,13 +24,13 @@ body{
     position: absolute;
     height: 30px;
     width: 30px;
-    left: 3px;
+    left: 220px;
     pointer-events: none;
 }
 
 
 .searchInput{
-    width: 80%;
+    width: 60%;
     height: 40px;
     border-radius: 30px;
     border: 1px solid rgb(175, 173, 173);
@@ -49,7 +50,7 @@ body{
     justify-content: flex-start;
     display: flex;
     flex-direction: column;
-    margin-left: 200px;
+    margin-left: 50px;
     margin-top: 30px;
     gap: 30px;
 }
@@ -59,7 +60,7 @@ body{
     height: 30px;
     width: 30px;
     position: absolute;
-    left: 0px;
+    left: 180px;
     cursor: pointer;
     display: none;
 }
@@ -90,5 +91,211 @@ body{
     width: 40px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center;
     margin-right: 5px;
+}
+
+
+.searchPostSect{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    cursor: pointer;
+}
+
+.searchpostLikeAndComment{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.searchpostLike{
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+
+.searchpostLikeHit{
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.searchpostComment{
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.searchpostStore{
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.searchpostStoreHit{
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.searchpostSect{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.searchpostImg{
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+}
+
+.searchpostContainerTemp{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.searchpostInfo{
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background-color: white;
+    position: relative;
+}
+
+
+.searchpostName {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.searchpostContent {
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+#searchPostShow {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    padding: 0;
+    border: none;
+    border-radius: 15px;
+}
+
+.searchCloseDialog {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+.postComments {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    margin-top: 10px;
+}
+
+.postCommentCount {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.postCommentList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.postCommentItem {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    overflow-wrap: anywhere;
+}
+
+.postCommentItem strong {
+    font-size: 14px;
+}
+
+.postCommentItem p {
+    margin: 6px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.postCommentItem button {
+    border: none;
+    background: none;
+    color: #888;
+    cursor: pointer;
+}
+
+.postCommentForm {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.postCommentForm input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.postCommentForm button {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: #111;
+    color: white;
+    cursor: pointer;
+}
+
+.postCommentForm button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

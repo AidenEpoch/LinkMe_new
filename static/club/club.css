@@ -1,65 +1,362 @@
-.arrange{
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.arrange {
     display: grid;
-    grid-template-columns: 220px minmax(0, 1200px) 220px;
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
     min-height: 100vh;
     width: 100%;
 }
 
-body{
+/* 探索社群區域 */
+#clubMainSection {
+    grid-column: 2;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.contentMainSection {
+    width: min(100%, 760px);
+    padding: 35px 25px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.clubHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.MainBanner {
+    font-size: 24px;
+    font-weight: 700;
     margin: 0;
 }
 
-#clubMainSection{
-    grid-column: 2;
-    display: grid;
-    grid-template-columns: 20% 60% 20%;
+#createClubBtn {
+    padding: 12px 18px;
+    background-color: #111;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
-.MainBanner{
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    font-size: 20px;
-    font-weight: 700;
-    height: 30px;
+#createClubBtn:hover {
+    background-color: #333;
 }
 
-.contentMainSection{
-    grid-column: 2;
-    padding-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.clubListSection{
-    border: 1px solid rgb(175, 173, 173);
-    border-radius: 10px;
-    height: 100vh;
-}
-
-.clubSearchInput{
-    width: 100%;
-    border-radius: 20px;
-    border: 1px solid rgb(175, 173, 173);
-    height: 45px;
-    background-color: rgb(243, 240, 240);
-    padding-left: 35px;
-    font-size: 18px;
-    outline: none;
-    box-sizing: border-box;
-}
-
-.clubSearchIcon{
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    left: 5px;
-}
-
-.clubSearchSect{
+/* 搜尋欄 */
+.clubSearchSect {
     display: flex;
     align-items: center;
     position: relative;
+    width: 100%;
 }
 
+.clubSearchIcon {
+    position: absolute;
+    left: 12px;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.clubSearchInput {
+    width: 100%;
+    height: 48px;
+    padding: 0 15px 0 45px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    outline: none;
+}
+
+.clubSearchInput:focus {
+    border-color: #999;
+    background-color: white;
+}
+
+/* 社群列表 */
+.clubListSection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    min-height: 100px;
+}
+
+.clubCard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    border: 1px solid #e4e4e4;
+    border-radius: 16px;
+    background-color: white;
+    transition: box-shadow 0.2s;
+}
+
+.clubCard:hover {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+}
+
+.clubCover {
+    width: 90px;
+    height: 90px;
+    border-radius: 14px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    flex-shrink: 0;
+}
+
+.clubCardInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.clubCardInfo h3 {
+    font-size: 18px;
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+}
+
+.clubType {
+    display: block;
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.clubDescription {
+    font-size: 14px;
+    color: #555;
+    margin: 0 0 10px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.clubMemberCount {
+    font-size: 13px;
+    color: #888;
+}
+
+.clubJoinBtn {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 14px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.clubJoinBtn:hover {
+    background-color: #e7e7e7;
+}
+
+.clubJoinBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.clubOwnerBtn {
+    background-color: #eee;
+    color: #777;
+    cursor: default;
+}
+
+.clubEmpty {
+    text-align: center;
+    padding: 40px 15px;
+    color: #888;
+}
+
+#clubLoading {
+    display: none;
+    text-align: center;
+    padding: 15px;
+    color: #888;
+}
+
+#clubSentinel {
+    height: 2px;
+}
+
+/* 我的社群 */
+#myClubSection {
+    grid-column: 3;
+    padding: 35px 15px;
+    min-width: 0;
+}
+
+#myClubBanner {
+    font-size: 18px;
+    margin: 0 0 20px;
+}
+
+#myClubContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.myClubItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px;
+    min-width: 0;
+}
+
+.myClubImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.myClubText {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.myClubName {
+    display: block;
+    font-size: 14px;
+}
+
+.myClubRole {
+    display: block;
+    color: #888;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* 建立社群 Dialog */
+#createClubDialog {
+    width: min(450px, 90vw);
+    max-height: 85vh;
+    overflow-y: auto;
+    border: none;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+#createClubDialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#createClubForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#createClubForm h2 {
+    margin: 0 0 15px;
+    font-size: 22px;
+}
+
+#createClubForm label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#createClubForm input,
+#createClubForm textarea,
+#createClubForm select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font: inherit;
+    outline: none;
+}
+
+#createClubForm textarea {
+    resize: vertical;
+}
+
+.clubDialogActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.clubDialogActions button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.clubCancelBtn {
+    background-color: #eee;
+}
+
+.clubSubmitBtn {
+    background-color: #111;
+    color: white;
+}
+
+.clubSubmitBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 手機版 */
+@media (max-width: 900px) {
+    .arrange {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #clubMainSection {
+        grid-column: 1;
+    }
+
+    .contentMainSection {
+        padding: 25px 15px 50px;
+    }
+
+    #myClubSection {
+        grid-column: 1;
+        padding: 20px 15px;
+    }
+
+    .clubCard {
+        flex-wrap: wrap;
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .clubCover {
+        width: 65px;
+        height: 65px;
+    }
+
+    .clubJoinBtn {
+        margin-left: auto;
+    }
+}

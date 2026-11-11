@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/editAccountPrivate/editAccountPrivate.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="editArrange">
+        {% include "components/edit.html" %}
+        <div class="privacySection">
+            <h2>個人檔案隱私設定</h2>
+
+            <div class="privacyBlock">
+                <div class="privacyTop">
+                    <span>不公開個人檔案</span>
+
+                    <label class="toggleSwitch">
+                        <input type="checkbox" id="privateAccount">
+                        <span class="toggleSlider"></span>
+                    </label>
+                </div>
+                <div class="privacyStatus" id="privateStatus">目前為不公開個人檔案</div>
+                <div class="privacyStatus" id="publicStatus">目前為公開狀態</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/editAccountPrivate/editAccountPrivate.js"></script>
+</html>

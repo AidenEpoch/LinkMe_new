@@ -10,6 +10,17 @@
     position: relative;
 }
 
+.editArrange{
+    display: grid;
+    grid-template-columns: 220px  400px minmax(0, 800px);
+    min-height: 100vh;
+    width: 100%;
+}
+
+body{
+    margin: 0;
+}
+
 #editAvatar{
     height: 60px;
     width: 60px;
@@ -53,12 +64,51 @@
 }
 
 #editBio{
+    width: 100%;
+    height: 200px;
+    margin-top: 0;
+    position: relative;
+    box-sizing: border-box;
+    resize: none;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 15px;
+}
+
+.bioEditBtn{
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-color: rgb(74, 140, 192);
+    border-radius: 20px;
+    height: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 80px;
+}
+
+.editBioUpmost{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+#editBioBanner{
+}
+
+.editBioContainer{
+    position: relative;
+    width: 60%;
+    margin-top: 30px;
     border-radius: 10px;
     border: 1px solid rgb(176, 176, 176);
-    width: 60%;
-    height: 200px;
-    margin-top: 30px;
+    box-sizing: border-box;
     padding: 10px;
+}
+
+#editBioRemaining{
 }
 
 #setAvatar{
@@ -121,4 +171,51 @@
 
 #removeAvatar{
     color: rgb(223, 43, 43);
+}
+
+
+.alterDisplayNameSection{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 60%;
+    margin-top: 20px;
+}
+
+.alterDisplayNameBanner{
+    margin-right: 15px;
+}
+
+#alterDisplayNameInput{
+    height: 35px;
+    border-radius: 10px;
+    width: 60%;
+    border: 1px black solid;
+    font-size: 16px;
+}
+
+#alterDisplayNameAssure{
+    border-radius: 20px;
+    background-color: rgb(74, 140, 192);
+    color: white;
+    cursor: pointer;
+    width: auto;
+    height: 35px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alterDisplayNameSectionButtom{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 60%;
+    margin-top: 20px;
+}
+
+#alterDisplayNameSuccess{
+    display: none;
+    color: rgb(30, 204, 39);
 }

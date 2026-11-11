@@ -1,6 +1,9 @@
 let editDisplayName = document.querySelector("#editDisplayName");
 let editAvatar = document.querySelector("#editAvatar");
-document.addEventListener("DOMContentLoaded", getEditProfileInfo);
+document.addEventListener("DOMContentLoaded", ()=>{
+    getEditProfileInfo();
+});
+const alterDisplayNameAssure = document.querySelector("#alterDisplayNameAssure");
 const changeAvatar = document.querySelector("#changeAvatar");
 const changeAvatarBtn = document.querySelector("#changeAvatarBtn");
 changeAvatar.addEventListener("click", pressChangeAvatarBtn);
@@ -12,6 +15,36 @@ const avatarFileInput = document.querySelector("#avatarFileInput");
 uploadAvatar.addEventListener("click", startUploadAvatar);
 const removeAvatar = document.querySelector("#removeAvatar");
 removeAvatar.addEventListener("click", removeChosenAvatar);
+let editBio = document.querySelector("#editBio");
+let editBioRemaining = document.querySelector("#editBioRemaining");
+const BiomaxLength = 200;
+const bioEditBtn = document.querySelector("#bioEditBtn");
+let alterDisplayNameInput = document.querySelector("#alterDisplayNameInput");
+let alterDisplayNameSuccess = document.querySelector("#alterDisplayNameSuccess");
+
+alterDisplayNameAssure.addEventListener("click", alterDisplayNameFunc);
+bioEditBtn.addEventListener("click", alterBio);
+
+editBio.addEventListener("input", bioContentRemainWords);
+bioContentRemainWords();
+
+function bioContentRemainWords(){
+    const currentBioLength = editBio.value.length;
+    editBioRemaining.innerText = `${currentBioLength} / ${BiomaxLength}`;
+}
+
+async function alterBio() {
+    let formdata = new FormData();
+    formdata.append("text", editBio.value);
+    const response = await fetch("/api/edit/profile/bio",{
+        method: "PATCH",
+        body: formdata
+    });
+    const result = await response.json();
+    if(result.ok){
+        window.location.reload();
+    }
+}
 
 async function removeChosenAvatar(){
     editAvatar.src = "/static/image/avatar_default.png";
@@ -40,12 +73,17 @@ function pressChangeAvatarBtn(){
 
 
 async function getEditProfileInfo() {
+    alterDisplayNameSuccess.style.display = "none";
     const response = await fetch("/api/getEditProfileInfo", {
         method: "GET"
     });
     const result = await response.json();
     editDisplayName.innerText = result.display_name;
     editAvatar.src = result.avatar_url;
+    editBio.value = result.bio;
+    alterDisplayNameInput.placeholder = `當前顯示名稱: ${result.display_name}`;
+    const currentBioLength = editBio.value.length;
+    editBioRemaining.innerText = `${currentBioLength} / ${BiomaxLength}`;
 }
 
 async function changeProfileAvatar(){
@@ -77,3 +115,17 @@ async function changeProfileAvatar(){
     }
 }
 
+
+async function alterDisplayNameFunc() {
+    let formdata = new FormData();
+    formdata.append("display_name", alterDisplayNameInput.value);
+    const response = await fetch("/api/edit/displayName", {
+        method: "PATCH",
+        body: formdata
+    })
+    const result = await response.json();
+    if(result.ok){
+        alterDisplayNameInput.placeholder = `當前顯示名稱: ${result.display_name}`;
+        alterDisplayNameSuccess.style.display = "block";
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/editAccount/editAccount.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="editArrange">
+        {% include "components/edit.html" %}
+        <div class="editAccountSection">
+            <div class="editAccountBlock">
+                <div id="editAccountBanner">帳號資訊</div>
+                <div id="editAccountMain">
+                    <div class="alterPassWord" id="alterPassWord">
+                        <div>變更密碼</div>
+                    </div>
+                    <div class="alterEmail" id="alterEmail">
+                        <div>變更電子郵件信箱</div>
+                    </div>
+                </div>
+                <dialog id="alterPassWordDialog">
+                    <img src="/static/image/close_dark.png" id="closeAlterPassword">
+                    <div id="alterPassWordBanner">變更密碼</div>
+                    <div class="alterPassWordInputSection">
+                        <div>
+                            <input type="password" id="oldPassword" placeholder=" " required></input>
+                            <label for="oldPassword">目前的密碼</label>
+                        </div>
+                        <div>
+                            <input type="password" id="newPassword" placeholder=" " required></input>
+                            <label for="newPassword">新的密碼</label>
+                        </div>
+                        <div>
+                            <input type="password" id="newPasswordAssure" placeholder=" " required></input>
+                            <label for="newPasswordAssure">確認密碼</label>
+                        </div>
+                        <div id="editPasswordBtn">確認修改</div>
+                        <div id="passwordNotTheSame">輸入的密碼不相同</div>
+                        <div id="oldPasswordWrong">舊密碼錯誤</div>
+                        <div id="passwordEditSuccess">密碼修改成功</div>
+                    </div>
+                </dialog>
+
+
+                <dialog id="alterEmailDialog">
+                    <img src="/static/image/close_dark.png" id="closeAlterEmail">
+                    <div id="alterEmailBanner">變更電子郵件信箱</div>
+                    <div class="alterEmailInputSection">
+                        <div>
+                            <input type="email" id="newEmail" placeholder=" " required></input>
+                            <label for="newEmail">請輸入想要變更的電子郵件信箱</label>
+                        </div>
+                        <div id="editEmailBtn">確認修改</div>
+                        <div id="editEmailSuccess">修改成功</div>
+                    </div>
+                </dialog>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/editAccount/editAccount.js"></script>
+</html>

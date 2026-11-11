@@ -28,6 +28,51 @@ body{
     margin-bottom: 30px;
 }
 
+.postLikeAndComment{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    position: static;
+}
+
+.postLike{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+
+.postLikeHit{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.postComment{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.postStore{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.postStoreHit{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+
+
+
+
+
 .avatarAndOther{
     display: grid;
     grid-template-columns: 150px minmax(0, 1fr) ;
@@ -114,6 +159,93 @@ body{
     font-size: 15px;
     cursor: pointer;
     font-weight: 700;
+}
+
+.messageBtn{
+    grid-column: 2/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(175, 173, 173);
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+
+.postComments {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    margin-top: 10px;
+}
+
+.postCommentCount {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.postCommentList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.postCommentItem {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    overflow-wrap: anywhere;
+}
+
+.postCommentItem strong {
+    font-size: 14px;
+}
+
+.postCommentItem p {
+    margin: 6px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.postCommentItem button {
+    border: none;
+    background: none;
+    color: #888;
+    cursor: pointer;
+}
+
+.postCommentForm {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.postCommentForm input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.postCommentForm button {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: #111;
+    color: white;
+    cursor: pointer;
+}
+
+.postCommentForm button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 /*中間內容結束*/
 
@@ -248,7 +380,16 @@ body{
     height: 100%;
     min-height: 0;
     object-fit: contain;
-    background-color: black;
+    object-position: center;
+    overflow: hidden;
+}
+
+.postContainerTemp{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
 
 .postInfo{
@@ -260,6 +401,7 @@ body{
     box-sizing: border-box;
     overflow-y: auto;
     background-color: white;
+    position: relative;
 }
 
 

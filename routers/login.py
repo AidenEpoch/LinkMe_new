@@ -19,7 +19,9 @@ async def login(request: Request):
     email = requirements.get("email")
     password = requirements.get("password")
     sql = """
-        SELECT id, password_hash FROM users WHERE email = %s OR user_name = %s;
+        SELECT id, password_hash, is_verified, status, email
+        FROM users
+        WHERE email = %s OR user_name = %s;
     """
     con = db_pool.get_connection()
     cursor = con.cursor(dictionary = True)
@@ -31,7 +33,7 @@ async def login(request: Request):
             print("帳號或密碼錯誤")
             return JSONResponse(
                 status_code = 401,
-                content = {"error": True, "message": "帳號或密碼錯誤"}
+                content = {"error": True, "message": "帳號或密碼錯誤", "inputError": True}
             )
         password_hash = user["password_hash"]
         user_id = user["id"]
@@ -42,11 +44,34 @@ async def login(request: Request):
         except(VerifyMismatchError, ValueError):
             return JSONResponse(
                 status_code = 401,
-                content = {"error": True, "message": "帳號或密碼錯誤"}
+                content = {"error": True, "message": "帳號或密碼錯誤","inputError": True}
             )
         print("驗證成功")
+        if user["status"] != "active":
+            return JSONResponse(
+                status_code=403,
+                content={
+                    "ok": False,
+                    "message": "此帳號目前無法登入"
+                }
+            )
+        if not user["is_verified"]:
+            return JSONResponse(
+                status_code=403,
+                content={
+                    "ok": False,
+                    "emailNotVerified": True,
+                    "email": user["email"],
+                    "message": "請先完成 Email 驗證"
+                }
+            )
         request.session["user_id"] = user_id
-        return {"ok": True, "message": "登陸及驗證成功"}
+
+        return {
+            "ok": True,
+            "message": "登入成功"
+        }
+        
     except Exception as e:
         return JSONResponse(
             status_code = 500,

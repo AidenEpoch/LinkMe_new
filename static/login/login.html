@@ -27,6 +27,7 @@
                     <div>
                         <input type="password" placeholder="密碼" class="inputBlock" id="password">
                     </div>
+                    <div id="passwordOrNameError">帳號或密碼錯誤</div>
                     <div>
                         <button class="loginBtn" id="logIn">登入</button>
                     </div>
@@ -48,6 +49,7 @@
 <script>
     const login = document.querySelector("#logIn");
     let createAccount = document.querySelector("#createAccount");
+    const passwordOrNameError = document.querySelector("#passwordOrNameError");
 
     async function logInFunc() {
         const password = document.querySelector("#password").value;
@@ -57,9 +59,21 @@
             body: JSON.stringify({"email": email, "password": password}),
             headers: {"Content-Type": "application/json"}
         });
-        const result = await response.json();    
+        const result = await response.json();
+        if (result.emailNotVerified === true) {
+            alert("你的 Email 尚未完成驗證，請先進行驗證！");
+
+            window.location.href =
+                "/verify-email?email=" +
+                encodeURIComponent(result.email);
+
+            return;
+        }    
         if(result.ok){
             window.location.href = "/";
+        }
+        else if(result.inputError){
+            passwordOrNameError.style.display = "block";
         }
     }
 

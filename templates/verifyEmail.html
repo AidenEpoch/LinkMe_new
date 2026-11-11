@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>驗證電子郵件 | LinkMe</title>
+    <link rel="stylesheet" href="/static/verifyEmail/verifyEmail.css">
+    <script src="/static/verifyEmail/verifyEmail.js" defer></script>
+</head>
+<body>
+    <main class="verifyContainer">
+        <div class="verifyCard">
+            <img
+                src="/static/image/linkme_logo_color.png"
+                class="logo"
+                alt="LinkMe"
+            >
+
+            <h1>驗證你的電子郵件</h1>
+
+            <p class="description">
+                請輸入六位數驗證碼，以完成 LinkMe 帳號註冊。
+            </p>
+
+            <p id="emailDisplay" class="emailDisplay"></p>
+
+            <div class="codeInputs" id="codeInputs">
+                <input maxlength="1" inputmode="numeric" autocomplete="one-time-code" aria-label="第1位驗證碼">
+                <input maxlength="1" inputmode="numeric" aria-label="第2位驗證碼">
+                <input maxlength="1" inputmode="numeric" aria-label="第3位驗證碼">
+                <input maxlength="1" inputmode="numeric" aria-label="第4位驗證碼">
+                <input maxlength="1" inputmode="numeric" aria-label="第5位驗證碼">
+                <input maxlength="1" inputmode="numeric" aria-label="第6位驗證碼">
+            </div>
+
+            <p id="message" class="message" role="status" aria-live="polite"></p>
+
+            <button id="verifyBtn" class="verifyBtn">
+                確認驗證
+            </button>
+
+            <div class="resendArea">
+                <span>沒有收到驗證碼？</span>
+                <button id="resendBtn" class="resendBtn">
+                    重新寄送
+                </button>
+            </div>
+
+            <a href="/" class="backLink">返回登入頁面</a>
+        </div>
+    </main>
+</body>
+</html>

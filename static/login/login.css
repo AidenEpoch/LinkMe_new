@@ -91,4 +91,9 @@ body{
     border-radius: 30px;
 }
 
+#passwordOrNameError{
+    display: none;
+    color: red;
+}
+
 /*右側結束*/

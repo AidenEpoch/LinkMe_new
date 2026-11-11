@@ -1,34 +1,168 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/leftNav/leftNav.css">
-    <link rel="stylesheet" href="/static/club/club.css">
-    <title>Document</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+          href="/static/leftNav/leftNav.css">
+
+    <link rel="stylesheet"
+          href="/static/club/club.css">
+
+    <title>LinkMe - 社群</title>
 </head>
+
 <body>
-    <div class="arrange">
-        {% include "components/leftNav.html" %}
-        {% include "components/message.html" %}
-        {% include "components/chat.html" %}
-        <div id="clubMainSection">
-            <div></div>
-            <div class="contentMainSection"> 
-                <div class="MainBanner">探索社群</div>
-                <div class="clubSearchSect">
-                    <img src="/static/image/littleSearch.png" class="clubSearchIcon">
-                    <input placeholder="來探索社群吧" type="text" class="clubSearchInput">
-                </div>
-                <div class="clubListSection"></div>
-            </div>  
-            <div></div>
+
+<div class="arrange">
+
+    {% include "components/leftNav.html" %}
+    {% include "components/message.html" %}
+    {% include "components/chat.html" %}
+
+    <!-- 探索社群 -->
+    <main id="clubMainSection">
+
+        <div class="contentMainSection">
+
+            <div class="clubHeader">
+                <h1 class="MainBanner">探索社群</h1>
+
+                <button id="createClubBtn" type="button">
+                    + 建立社群
+                </button>
+            </div>
+
+            <div class="clubSearchSect">
+
+                <img
+                    src="/static/image/littleSearch.png"
+                    class="clubSearchIcon"
+                    alt=""
+                >
+
+                <input
+                    id="clubSearchInput"
+                    type="text"
+                    class="clubSearchInput"
+                    placeholder="來探索社群吧"
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <div id="clubListSection"
+                 class="clubListSection">
+            </div>
+
+            <div id="clubLoading">載入中...</div>
+
+            <div id="clubSentinel"></div>
+
         </div>
-        <div id="myClubSection">
-            <div id="myClubBanner">我的社群:</div>
-            <div id="myClubContainer"></div>
+
+    </main>
+
+    <!-- 我的社群 -->
+    <aside id="myClubSection">
+
+        <h2 id="myClubBanner">我的社群</h2>
+
+        <div id="myClubContainer"></div>
+
+    </aside>
+
+</div>
+
+
+<!-- 建立社群視窗 -->
+<dialog id="createClubDialog">
+
+    <form id="createClubForm">
+
+        <h2>建立新社群</h2>
+
+        <label for="newClubName">
+            社群名稱
+        </label>
+
+        <input
+            id="newClubName"
+            name="name"
+            type="text"
+            maxlength="256"
+            placeholder="輸入社群名稱"
+            required
+        >
+
+        <label for="newClubType">
+            社群分類
+        </label>
+
+        <select id="newClubType" name="club_type">
+            <option value="">選擇分類</option>
+            <option value="生活">生活</option>
+            <option value="科技">科技</option>
+            <option value="遊戲">遊戲</option>
+            <option value="運動">運動</option>
+            <option value="攝影">攝影</option>
+            <option value="音樂">音樂</option>
+            <option value="學習">學習</option>
+            <option value="其他">其他</option>
+        </select>
+
+        <label for="newClubDescription">
+            社群簡介
+        </label>
+
+        <textarea
+            id="newClubDescription"
+            name="description"
+            rows="4"
+            maxlength="2000"
+            placeholder="介紹一下你的社群吧"
+        ></textarea>
+
+        <label for="newClubImage">
+            社群封面圖片網址
+        </label>
+
+        <input
+            id="newClubImage"
+            name="img_url"
+            type="url"
+            maxlength="1024"
+            placeholder="https://example.com/image.jpg"
+        >
+
+        <div class="clubDialogActions">
+
+            <button
+                id="cancelClubBtn"
+                type="button"
+                class="clubCancelBtn">
+                取消
+            </button>
+
+            <button
+                id="submitClubBtn"
+                type="submit"
+                class="clubSubmitBtn">
+                建立社群
+            </button>
+
         </div>
-    </div>
-</body>
+
+    </form>
+
+</dialog>
+
+
 <script src="/static/leftNav/leftNav.js"></script>
+<script src="/static/club/club.js"></script>
+
+</body>
 </html>

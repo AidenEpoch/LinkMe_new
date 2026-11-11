@@ -27,23 +27,66 @@ body{
     grid-template-columns: 1fr;
     gap: 60px;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .postSect{
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    border: 1px solid rgb(175, 173, 173);
     width: 400px;
-    height: 600px;
+    height: auto;
+}
+
+.indexPostLike{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.indexPostLikeHit{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+.indexPostComment{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.indexpostStore{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.indexPostUserContentSection{
+    margin-top: 15px;
+}
+
+.indexPostUserName{
+    margin-right: 10px;
+}
+
+.indexPostStoreHit{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+.indexPostLikeAndComment{
+    display: flex;
 }
 
 .postBanner{
     display: flex;
-    justify-content: center;
     align-items: center;
     text-align: center;
+    padding-left: 10px;
 }
 
 .friendStatusContainer{
@@ -70,6 +113,116 @@ body{
     height: 1px;
 }
 
+.post_avatar{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-position: center;
+    object-fit: cover;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+/* 留言區 */
+.postComments {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    margin-top: 15px;
+}
+
+.postCommentCount {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.postCommentList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.postCommentItem {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    overflow-wrap: anywhere;
+}
+
+.postCommentItem strong {
+    font-size: 14px;
+}
+
+.postCommentItem p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 6px 0;
+}
+
+.postCommentItem button {
+    border: none;
+    background: transparent;
+    color: #888;
+    cursor: pointer;
+}
+
+.postCommentForm {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.postCommentForm input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.postCommentForm button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #111;
+    color: white;
+    cursor: pointer;
+}
+
+.postCommentForm button:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.postComments{
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.postCommentItem{
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.postCommentForm{
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+}
+
+.postCommentForm input{
+    min-width: 0;
+    flex: 1;
+}
+
 /*主要內容的CSS結束*/
 
 /*右導覽列的CSS*/
@@ -90,6 +243,45 @@ body{
 .user_name{
     display: flex;
     align-items: center;
+}
+
+
+.LinkMeRecordBlock{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
+.matchedMemberAvatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+
+}
+
+#LinkMeRecordContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#LinkMeRecordBanner{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#userAvatar{
+    width: 60px; 
+    height: 60px; 
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
 }
 
 /*右導覽列的CSS結束*/

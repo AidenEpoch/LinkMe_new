@@ -17,7 +17,7 @@ async def getUserInformation(request: Request):
         )
     else:
         sql = """
-        SELECT user_name, display_name FROM users WHERE id = %s;
+        SELECT user_name, display_name, avatar_url FROM users WHERE id = %s;
     """
         con = db_pool.get_connection()
         cursor = con.cursor(dictionary = True)
@@ -27,9 +27,11 @@ async def getUserInformation(request: Request):
             data = cursor.fetchone()
             user_name = data["user_name"]
             display_name = data["display_name"]
+            avatar_url = data["avatar_url"]
             returnData = dict()
             returnData["user_name"] = user_name
             returnData["display_name"] = display_name
+            returnData["avatar_url"] = avatar_url
             return JSONResponse(
                 status_code = 200,
                 content = {"ok": True, "data": returnData}
@@ -57,7 +59,7 @@ async def getProfileInformation(request: Request, user_name: str):
         )
     else:
         sql = """
-            SELECT id, user_name, display_name, avatar_url FROM users WHERE user_name = %s;
+            SELECT id, user_name, display_name, avatar_url,bio, is_private FROM users WHERE user_name = %s;
         """
         con = db_pool.get_connection()
         cursor = con.cursor(dictionary = True)
@@ -98,13 +100,16 @@ async def getProfileInformation(request: Request, user_name: str):
                 status_code = 200,
                 content = {"ok": True, 
                            "data": {
+                               "is_private": user["is_private"],
                                "user_name": user["user_name"],
                                "display_name": user["display_name"],
                                "is_owner": is_owner,
                                "postNumber": postNumber,
                                "followerNumber": followerNumber,
                                "followingNumber": followingNumber,
-                               "avatar_url": user["avatar_url"]
+                               "avatar_url": user["avatar_url"],
+                               "bio": user["bio"],
+                               "id": user["id"]
                            }}
             )
         except Exception as e:

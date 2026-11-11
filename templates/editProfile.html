@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/editComponent/editComponent.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="editArrange">
+        {% include "components/edit.html" %}
+    <div class="editSection">
+        <div class="editProfileBanner">編輯個人檔案</div>
+        <div id="editProfilePresent">
+            <img id="editAvatar">
+            <div id="editDisplayName"></div>
+            <div id="changeAvatar">變更大頭貼</div>
+        </div>
+        <div class="alterDisplayNameSection">
+            <div class="alterDisplayNameBanner">更改當前的顯示名稱</div>
+            <input type="text" id="alterDisplayNameInput">
+        </div>
+        <div class="alterDisplayNameSectionButtom">
+            <div id="alterDisplayNameAssure">確認更改</div>
+        </div>
+        <div class="alterDisplayNameSectionButtom">
+            <div id="alterDisplayNameSuccess">已成功更改顯示名稱</div>
+        </div>
+        <div class="editBioContainer">
+            <div class="editBioUpmost">
+                <div id="editBioBanner">個人簡介</div>
+                <div id="editBioRemaining">0/200</div>
+            </div>
+            <textarea id="editBio" maxlength="200"></textarea>
+        </div>
+        <div style="width: 60%; display: flex; justify-content: flex-end; margin-top: 10px;">
+            <div class="bioEditBtn" id="bioEditBtn">確認修改</div>
+        </div>
+    </div>
+    <dialog id="setAvatar">
+        <div id="avatarBanner">變更大頭貼照</div>
+        <div id="setAvatarSection">
+            <div id="uploadAvatar" class="avatarBlock">上傳照片</div>
+            <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+            <div id="removeAvatar" class="avatarBlock">移除目前的大頭貼照</div>
+            <div id="closeAvatarSet" class="avatarBlock">取消</div>
+        </div>
+    </dialog>
+    </div>
+<script src="/static/editComponent/editComponent.js"></script>
+</body>
+</html>

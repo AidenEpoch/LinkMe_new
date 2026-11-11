@@ -58,7 +58,40 @@ closePostWindow.addEventListener("click", closePostDialogWindow);
 document.addEventListener("DOMContentLoaded", ()=>{
     getNotification();
     getLinkMeRemaining();
+    getAvatarIcon();
 });
+
+const userAvatarIcon = document.querySelector("#userAvatar_icon");
+const userAvatarIconHidden = document.querySelector("#userAvatar_iconHidden");
+
+async function getAvatarIcon() {
+    const response = await fetch("/api/user", {
+        method: "GET"
+    });
+    const result = await response.json();
+    if(result.ok){
+        let userNamePost = document.querySelector("#userNamePost");
+        if(result.data.avatar_url){
+            userAvatarIcon.src = result.data.avatar_url;
+            userAvatarIconHidden.src = result.data.avatar_url;
+            userNamePost.innerHTML = `
+                <div class = "postUserPresent">
+                    <img src = ${result.data.avatar_url} id = "userAvatar_postReady">
+                    <div>${result.data.display_name}</div>
+                </div>
+            `
+        }else{
+            userAvatarIcon.src = "/static/image/avatar_default.png";
+            userAvatarIconHidden = "/static/image/avatar_default.png";
+            userNamePost.innerHTML = `
+                <div class = "postUserPresent">
+                    <img src = "/static/image/avatar_default.png" id = "userAvatar_postReady">
+                    <div>${result.data.display_name}</div>
+                </div>
+            `
+        }
+    }
+}
 
 let reminderHidden = document.querySelector("#reminderHidden");
 let notified_reminderIconHidden = document.querySelector("#notified_reminderIconHidden");

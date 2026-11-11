@@ -120,6 +120,7 @@ async def getMessage(request: Request):
 
 @router.get("/api/GetPost/{user}")
 async def getOthersPost(request: Request, user: str):
+    user_id = request.session.get("user_id")
     print(f"收到的 user: {repr(user)}", flush=True)
     con = None
     cursor = None
@@ -127,7 +128,7 @@ async def getOthersPost(request: Request, user: str):
         con = db_pool.get_connection()
         cursor = con.cursor(dictionary = True)
         sql = """
-            SELECT id, display_name FROM users WHERE user_name = %s;
+            SELECT id, display_name, is_private FROM users WHERE user_name = %s;
         """
         cursor.execute(sql, (user,))
         user_data = cursor.fetchone()
@@ -143,8 +144,20 @@ async def getOthersPost(request: Request, user: str):
             """
             userID = user_data["id"]
             name = user_data["display_name"]
+            is_private = user_data["is_private"]
+            is_owner = (user_data["id"] == int(user_id))
             cursor.execute(sql, (userID,))
             posts = cursor.fetchall()
+            sql = """
+                SELECT following_id FROM follows WHERE follower_id = %s AND following_id = %s;
+            """
+            cursor.execute(sql, (user_id, user_data["id"],))
+            is_follow_list = cursor.fetchone()
+            is_follow = True
+            if(is_follow_list):
+                is_follow = True
+            else:
+                is_follow = False
             for post in posts:
                 post["created_at"] = post["created_at"].isoformat()
                 if not post["image_key"]:
@@ -153,9 +166,16 @@ async def getOthersPost(request: Request, user: str):
                     post["image_url"] = post["image_key"]
                 else:
                     post["image_url"] = f"https://{cloudfront_name}/{post['image_key']}"
+            canView = False
+            if(is_owner == True):
+                canView = True
+            elif(is_private == False):
+                canView = True
+            elif(is_follow == True):
+                canView = True
             return JSONResponse(
                 status_code = 200,
-                content = {"ok": True, "data": posts, "name": name}
+                content = {"ok": True, "data": posts, "name": name, "is_private": is_private, "is_owner": is_owner, "is_follow": is_follow, "canView": canView}
             )
     except Exception as e:
         return JSONResponse(
@@ -170,7 +190,8 @@ async def getOthersPost(request: Request, user: str):
 
 
 @router.get("/api/showPost/{post_id}")
-async def showPost(post_id: int):
+async def showPost(post_id: int, request: Request):
+    userID = request.session.get("user_id")
     print(f"img_key = {post_id}")
     con = None
     cursor = None
@@ -202,9 +223,18 @@ async def showPost(post_id: int):
         cursor.execute(sql, (user_id,))
         postName = cursor.fetchone()
         postName = postName["display_name"]
+        sql = """
+            SELECT * FROM post_like WHERE user_id = %s AND post_id = %s;
+        """
+        cursor.execute(sql, (userID, post_id,))
+        like_data = cursor.fetchone()
+        if(like_data):
+            isLike = True
+        else:
+            isLike = False
         return JSONResponse(
             status_code = 200,
-            content = {"ok": True, "content": postContent, "name": postName, "img_url": img_url}
+            content = {"ok": True, "content": postContent, "name": postName, "img_url": img_url, "isLike": isLike}
         )
     except Exception as e:
         return JSONResponse(

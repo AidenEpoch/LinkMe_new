@@ -29,6 +29,10 @@ async def loginPage(request: Request):
 
 
 
+@router.get("/verify-email")
+async def verify_email_page():
+    return FileResponse("templates/verifyEmail.html")
+
 
 @router.get("/club")
 async def getClubPage(request: Request):
@@ -83,10 +87,43 @@ async def goToEditPage(request: Request):
         return FileResponse("./static/login/login.html", media_type = "text/html")
     return templates.TemplateResponse(
         request = request,
-        name = "edit.html",
+        name = "editProfile.html",
         context = {"user_id": user_id}
     )
 
+@router.get("/edit/profile")
+async def goToEditPage(request: Request):
+    user_id = request.session.get("user_id")
+    if(user_id == None):
+        return FileResponse("./static/login/login.html", media_type = "text/html")
+    return templates.TemplateResponse(
+        request = request,
+        name = "editProfile.html",
+        context = {"user_id": user_id}
+    )
+
+
+@router.get("/edit/account")
+async def goToEditPage(request: Request):
+    user_id = request.session.get("user_id")
+    if(user_id == None):
+        return FileResponse("./static/login/login.html", media_type = "text/html")
+    return templates.TemplateResponse(
+        request = request,
+        name = "editAccount.html",
+        context = {"user_id": user_id}
+    )
+
+@router.get("/edit/accountPrivate")
+async def goToEditPage(request: Request):
+    user_id = request.session.get("user_id")
+    if(user_id == None):
+        return FileResponse("./static/login/login.html", media_type = "text/html")
+    return templates.TemplateResponse(
+        request = request,
+        name = "editAccountPrivate.html",
+        context = {"user_id": user_id}
+    )
 
 
 @router.get("/{user_name}")

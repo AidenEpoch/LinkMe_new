@@ -17,6 +17,88 @@ body{
 #linkMeAvatar{
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+}
+
+#rejectPopUpImg{
+    height: 120px;
+    width: 150px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#rejectPopUp[open]{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    width: 600px;
+    border-radius: 20px;
+}
+
+#rejectPopUp::backdrop{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.decideLink{
+    display: flex;
+    gap: 75px;
+    margin-top: 30px;
+}
+
+.missSection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#doubleOp{
+    font-size: 18px;
+    color: red;
+    display: none;
+}
+
+#missSection{
+    font-size: 20px;
+    font-weight: 600;
+    display: none;
+}
+
+
+#thinkTwice{
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    background-color: rgb(47, 154, 175);
+    color: white;
+    height: 30px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#goodBye{
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    background-color: rgb(47, 154, 175);
+    color: white;
+    height: 30px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkMeCaption{
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .linkMeMainBlock{

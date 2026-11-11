@@ -19,23 +19,37 @@
             <div class="inputForm">
                 <div class="formContent">
                     <div class="inputText">電子郵件地址</div>
-                    <input placeholder="電子郵件地址" class="input" id="email">
+                    <input
+                        placeholder="電子郵件地址"
+                        class="input"
+                        id="email"
+                        type="email"
+                        autocomplete="email"
+                    >
+                    <div id="emailBlank">電子郵件列請不要留白</div>
+                    <div id="emailInvalid" style="display: none; color: red;">
+                        請輸入正確的電子郵件格式
+                    </div>
                     <div>你可能會收到我們的通知</div>
                 </div>
 
                 <div class="formContent">
                     <div class="inputText">密碼</div>
                     <input placeholder="密碼" class="input" id="password" type="password">
+                    <div id="passwordBlank">密碼列請不要留白</div>
                 </div>
 
                 <div class="formContent">
                     <div class="inputText">再次確認密碼</div>
                     <input placeholder="請再輸入一次密碼" class="input" id="passwordAgain" type="password">
+                    <div id="passwordAssureBlank">再次確認密碼列請不要留白</div>
+                    <div id="newISNotEqualAssure">再次確認的密碼與新密碼不同</div>
                 </div>
 
                 <div class="formContent">
                     <div class="inputText">用戶名稱</div>
                     <input placeholder="用戶名稱" class="input" id="userName">
+                    <div id="userNameBlank">用戶名稱列請不要留白</div>
                 </div>
                 <div>點按「提交」即表示你同意建立帳號，也同意 LinkMe 的 《使用條款》、《隱私政策》和《Cookies政策》</div>
                 <div class="submitBtn" id="submitBtn">
@@ -53,6 +67,35 @@
 <script>
     const toLogin = document.querySelector("#goToLogin");
     const returnBtn = document.querySelector("#returnBtn");
+    let emailBlank = document.querySelector("#emailBlank");
+    const emailInput = document.querySelector("#email");
+    const emailInvalid = document.querySelector("#emailInvalid");
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    emailInput.addEventListener("input", function() {
+        const email = emailInput.value.trim();
+
+        if (email === "") {
+            emailInvalid.style.display = "none";
+            emailInput.style.borderColor = "";
+            return;
+        }
+
+        if (isValidEmail(email)) {
+            emailInvalid.style.display = "none";
+            emailInput.style.borderColor = "";
+        } else {
+            emailInvalid.style.display = "block";
+            emailInput.style.borderColor = "red";
+        }
+    });
+    let passwordBlank = document.querySelector("#passwordBlank");
+    let passwordAssureBlank = document.querySelector("#passwordAssureBlank");
+    let userNameBlank = document.querySelector("#userNameBlank");
+    let newISNotEqualAssure = document.querySelector("#newISNotEqualAssure");
 
     returnBtn.addEventListener("mouseenter", returnSelect);
     returnBtn.addEventListener("mouseleave", returnLeave);
@@ -73,35 +116,78 @@
     }
 
     const submitReg = document.querySelector("#submitBtn");
+    let isSubmitting = false;
     function goToLogin(){
         window.location.href = "/";
     }
 
     async function submitRegister(){
+        if (isSubmitting) {
+            return;
+        }
         const password = document.querySelector("#password").value;
         const passwordAgain = document.querySelector("#passwordAgain").value;
         const email = document.querySelector("#email").value;
         const userName = document.querySelector("#userName").value;
-        if(password != passwordAgain){
-            alert("請確認兩次輸入的密碼為相同");
-            return
-        }else if(password == "" || email == "" || userName == ""){
-            alert("請確認所有欄位皆輸入完成");
-            return
-        }else{
-            const response = await fetch("/api/register", {
-                method: "POST",
-                body: JSON.stringify({"userName": userName, "password": password, "email": email}),
-                headers:{"Content-Type": "application/json"}
-            })
+        
+        const isEmailBlank = email.trim() === "";
+        const isEmailInvalid = !isEmailBlank && !isValidEmail(email.trim());
+        const isPasswordBlank = password.trim() === "";
+        const isPasswordAgainBlank = passwordAgain.trim() === "";
+        const isUserNameBlank = userName.trim() === "";
+        const isNewNotEqualAssure = password.trim() != passwordAgain.trim();
+        emailBlank.style.display = isEmailBlank ? "block" : "none";
+        emailInvalid.style.display = isEmailInvalid ? "block" : "none";
+        passwordBlank.style.display = isPasswordBlank ? "block" : "none";
+        passwordAssureBlank.style.display = isPasswordAgainBlank ? "block" : "none";
+        userNameBlank.style.display = isUserNameBlank ? "block" : "none";
+        newISNotEqualAssure.style.display =
+        isNewNotEqualAssure && !isPasswordBlank && !isPasswordAgainBlank? "block": "none";
 
-            const result = await response.json();
-            if(result.ok){
-                window.location.href = "/";
-            }else{
-                alert("伺服器異常");
-            }
+        if (isEmailBlank || isEmailInvalid || isPasswordBlank || isPasswordAgainBlank || isUserNameBlank || isNewNotEqualAssure) {
+            return;
         }
+
+
+        isSubmitting = true;
+
+    // 讓按鈕顯示正在提交
+    submitReg.style.opacity = "0.5";
+    submitReg.style.cursor = "not-allowed";
+
+    try {
+        const response = await fetch("/api/register", {
+            method: "POST",
+            body: JSON.stringify({
+                "userName": userName,
+                "password": password,
+                "email": email
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        const result = await response.json();
+
+        if (result.ok) {
+            window.location.href =
+                "/verify-email?email=" +
+                encodeURIComponent(email.trim().toLowerCase());
+        } else {
+            alert(result.message || "註冊失敗");
+        }
+
+    } catch (error) {
+        console.error("註冊發生錯誤：", error);
+        alert("網路連線發生問題，請稍後再試");
+
+    } finally {
+        // 無論成功或失敗，都恢復按鈕狀態
+        isSubmitting = false;
+        submitReg.style.opacity = "";
+        submitReg.style.cursor = "";
+    }
     }
     submitReg.addEventListener("click", submitRegister);
     toLogin.addEventListener("click", goToLogin);

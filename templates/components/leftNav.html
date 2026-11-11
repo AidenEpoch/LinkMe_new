@@ -26,7 +26,7 @@
         </div>
 
         <div class="navBlock">
-            <img src="/static/image/avatar_default.png" class="navIcon">
+            <img class="navIcon" id="userAvatar_icon">
         </div>
 
     </nav>
@@ -63,7 +63,7 @@
         </div>
 
         <div class="navBlockHidden" id="userBlock">
-            <img src="/static/image/avatar_default.png" class="navIcon">
+            <img id="userAvatar_iconHidden" class="navIcon">
             <div class="navBanner">個人檔案</div>
         </div>
 
@@ -109,7 +109,7 @@
         <div class="postPageArr">
             <div id="previewBeforePost" alt="預覽圖片" class="postPreview"></div>
             <div class="postContentSection">
-                <div>用戶</div>
+                <div id="userNamePost">用戶</div>
                 <div class="postInputContainer">
                     <textarea id="postContent" class="postContentInput" placeholder="分享點什麼吧!"  maxlength="2200"></textarea>
                     <div id="remainingCount" class="remainingCount">

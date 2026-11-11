@@ -21,13 +21,24 @@
                     <div id="linkMeBio"></div>
                 </div>
                 <div class="selectBlock">
-                    <div class="linkMeBtn">追蹤</div>
-                    <div class="linkMeBtn">遺憾拒絕</div>
+                    <div class="linkMeBtn" id="linkMeBtn">追蹤</div>
+                    <div class="linkMeBtn" id="rejectBtn">遺憾拒絕</div>
+                    <div id="missSection">期待下次有緣分能再與你相見</div>
                 </div>
+                <div id="doubleOp">已經追蹤這位朋友，請不要三心二意~</div>
             </div>
         </div>
         {% include "components/chat.html" %}
     </div>
+    <dialog id="rejectPopUp">
+        <img src="/static/image/heart_broken.png" id="rejectPopUpImg">
+        <div class="linkMeCaption">要與這段緣分說再見嗎?</div>
+        <div class="RejectMeBanner">確認後，今天將不會再次推薦這位朋友</div>
+        <div class="decideLink">
+            <div id="thinkTwice">再想想</div>
+            <div id="goodBye">確定拒絕</div>
+        </div>
+    </dialog>
 </body>
 <script src="/static/linkme/linkme.js"></script>
 </html>

@@ -56,3 +56,28 @@
     grid-template-columns: 1fr;
     gap: 10px;
 }
+
+#emailBlank{
+    display: none;
+    color: red;
+}
+
+#passwordBlank{
+    display: none;
+    color: red;
+}
+
+#passwordAssureBlank{
+    display: none;
+    color: red;
+}
+
+#userNameBlank{
+    display: none;
+    color: red;
+}
+
+#newISNotEqualAssure{
+    display: none;
+    color: red;
+}

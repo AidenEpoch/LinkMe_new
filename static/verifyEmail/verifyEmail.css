@@ -1,0 +1,151 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, "Microsoft JhengHei", sans-serif;
+    background: #f5f8fa;
+}
+
+.verifyContainer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.verifyCard {
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    padding: 42px 30px;
+    border-radius: 22px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.logo {
+    width: 90px;
+    height: auto;
+    object-fit: contain;
+}
+
+h1 {
+    font-size: 25px;
+    margin: 20px 0 12px;
+}
+
+.description {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.emailDisplay {
+    color: #3286a8;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.codeInputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0 16px;
+}
+
+.codeInputs input {
+    width: 52px;
+    height: 60px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    outline: none;
+}
+
+.codeInputs input:focus {
+    border-color: #3a8aa9;
+    box-shadow: 0 0 0 3px rgba(58, 138, 169, 0.15);
+}
+
+.message {
+    min-height: 22px;
+    color: #d32f2f;
+    font-size: 14px;
+}
+
+.message.success {
+    color: #21844b;
+}
+
+.verifyBtn {
+    width: 100%;
+    height: 48px;
+    background: #3a8aa9;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.verifyBtn:hover {
+    background: #286d88;
+}
+
+.verifyBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.resendArea {
+    margin-top: 24px;
+    font-size: 14px;
+}
+
+.resendBtn {
+    background: none;
+    border: none;
+    color: #3286a8;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.resendBtn:disabled {
+    color: #999;
+    cursor: not-allowed;
+}
+
+.backLink {
+    display: inline-block;
+    margin-top: 28px;
+    color: #777;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .verifyCard {
+        padding: 30px 16px;
+    }
+
+    .codeInputs {
+        gap: 6px;
+    }
+
+    .codeInputs input {
+        width: min(13vw, 46px);
+        height: 54px;
+        font-size: 22px;
+    }
+}

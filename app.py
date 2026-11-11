@@ -6,7 +6,7 @@ from argon2 import PasswordHasher
 from argon2.exceptions import (VerifyMismatchError, VerificationError)
 from starlette.middleware.sessions import SessionMiddleware
 from database import db_pool
-from routers import auth, login, pages, register, user, match, post, logout, follow, link, indexPost, edit, search, indexFriendStatus, notify, linkmeuser, avatarUpload
+from routers import auth, login, pages, register, user, match, post, logout, follow, link, indexPost, edit, search, indexFriendStatus, notify, linkmeuser, avatarUpload,postOp, chat, searchPost, postComment, club
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -41,6 +41,13 @@ app.include_router(linkmeuser.router)
 ########################################################################################################
 
 
+##############################################  聊天功能 ################################################
+
+app.include_router(chat.router)
+
+#####################################################################################################
+
+
 ###########################################  編輯  ##############################################################
 
 app.include_router(edit.router)
@@ -55,6 +62,8 @@ app.include_router(follow.router)
 
 ##############################################  首頁貼文   ############################################################
 app.include_router(indexPost.router)
+
+app.include_router(postOp.router)
 ################################################ 首頁貼文結束   ####################################################
 
 
@@ -105,11 +114,21 @@ app.include_router(indexFriendStatus.router)
 
 ################################# 取得 user 資訊的 api 結束 #########################################
 
-################################
+################################ 搜尋頁面貼文 #####################################################
+
+app.include_router(searchPost.router)
+
+############################### 搜尋頁面貼文結束 ##################################################
 
 app.include_router(match.router)
 
+app.include_router(link.router)
+
 app.include_router(avatarUpload.router)
+
+app.include_router(postComment.router)
+
+app.include_router(club.router)
 
 
 app.mount("/static", StaticFiles(directory = "static"))

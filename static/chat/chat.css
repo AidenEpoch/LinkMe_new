@@ -32,3 +32,253 @@
     left: 15px;
     pointer-events: none;
 }
+
+
+
+/* 整個聊天室視窗 */
+.chatWindow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(1000px, 90vw);
+    height: min(700px, 85vh);
+
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+
+    display: none;
+    flex-direction: column;
+
+    overflow: hidden;
+    z-index: 2000;
+}
+
+/* 聊天室頂部 */
+.chatWindowHeader {
+    height: 65px;
+    min-height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 24px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.chatWindowTitle {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#chatCloseBtn {
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* 左右雙欄 */
+.chatWindowBody {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+/* 左側聊天列表 */
+.chatSidebar {
+    width: 30%;
+    min-width: 220px;
+
+    border-right: 1px solid #e5e5e5;
+    overflow-y: auto;
+}
+
+.chatSidebarTitle {
+    padding: 20px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+/* 右側聊天內容 */
+.chatMain {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.chatMainHeader {
+    min-height: 65px;
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 17px;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* 訊息顯示區 */
+.chatMessages {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 單則訊息 */
+.chatMessage {
+    max-width: 70%;
+    padding: 10px 15px;
+
+    border-radius: 18px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* 自己的訊息 */
+.chatMessage.mine {
+    align-self: flex-end;
+    background-color: #3797f0;
+    color: white;
+}
+
+/* 對方的訊息 */
+.chatMessage.other {
+    align-self: flex-start;
+    background-color: #efefef;
+    color: black;
+}
+
+/* 下方輸入區 */
+.chatInputArea {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 15px 20px;
+    border-top: 1px solid #e5e5e5;
+}
+
+#chatMessageInput {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 16px;
+
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    outline: none;
+    font-size: 15px;
+}
+
+#chatMessageInput:focus {
+    border-color: #3797f0;
+}
+
+#chatSendBtn {
+    border: none;
+    background-color: #3797f0;
+    color: white;
+
+    padding: 11px 18px;
+    border-radius: 20px;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#chatSendBtn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+
+/* 每一位聊天對象 */
+.chatConversationItem {
+    padding: 15px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.chatConversationItem:hover {
+    background-color: #f5f5f5;
+}
+
+/* 聊天對象名稱 */
+.chatConversationName {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* 最新一則訊息預覽 */
+.chatConversationPreview {
+    font-size: 13px;
+    color: #888;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 目前選取的聊天對象 */
+.chatConversationItem.active {
+    background-color: #efefef;
+}
+
+
+.chatConversationItem {
+    position: relative;
+}
+
+.chatUnreadBadge {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+    background-color: #ff3b30;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+
+
+.chatNotificationDot {
+    position: absolute;
+
+    top: 12px;
+    left: 38px;
+
+    width: 10px;
+    height: 10px;
+
+    background-color: red;
+    border-radius: 50%;
+
+    display: none;
+    pointer-events: none;
+}
