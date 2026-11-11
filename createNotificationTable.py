@@ -21,7 +21,7 @@ sql = """
         FOREIGN KEY (user_id) References users(id),
         FOREIGN KEY (actor_id) REFERENCES users(id),
         FOREIGN KEY (post_id) REFERENCES posts(id),
-        FOREIGN KEY (comment_id) REFERENCES comments(id)
+        FOREIGN KEY (comment_id) REFERENCES post_comments(id)
     )
 """
 
