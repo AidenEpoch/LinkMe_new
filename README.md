@@ -54,7 +54,7 @@
 
 (5)向 Let's Encrypt 申請 SSL 憑證
 
-### 資料庫架構 ###
+# 資料庫架構 #
 
 <img src = "linkme_local_EER.png">
 
