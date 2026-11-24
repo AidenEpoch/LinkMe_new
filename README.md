@@ -52,3 +52,5 @@
 
 (4)使用 Nginx 作為反向代理
 
+(5)向 Let's Encrypt 申請 SSL 憑證
+
