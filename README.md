@@ -56,5 +56,6 @@
 
 ### 資料庫架構 ###
 
+<img src = "linkme_local_EER.png">
 
 
