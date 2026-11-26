@@ -50,7 +50,7 @@ https://linkmeabc.vip
 
 (1)使用 AWS 的 EC2 作為雲端計算單位，作背景運行
 
-(2)使用 DOCKER 及 DOCKER COMPOSE 作持續化部署
+(2)使用 DOCKER 及 DOCKER COMPOSE 作部署
 
 (3)使用 AWS 的 CloudFront 建立多個端點，加快 S3 存取資料的效率
 
