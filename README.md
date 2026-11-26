@@ -58,6 +58,8 @@ https://linkmeabc.vip
 
 (5)向 Let's Encrypt 申請 SSL 憑證
 
+(6)利用 resend 作電子郵件驗證
+
 # 資料庫架構 #
 
 <img src = "linkme_local_EER.png">
