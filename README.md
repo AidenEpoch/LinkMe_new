@@ -116,20 +116,24 @@ https://linkmeabc.vip
 
 <img src = "images/createPost3.png">
 
-#### 創建完貼文之後會回到用戶個空間 ####
+#### 創建完貼文之後會回到用戶個人空間 ####
 <img src = "images/createPost4.png">
 
 ### 對貼文按讚 ###
+#### 可以點擊貼文底下的愛心和留言圖示 ####
 <img src = "images/likeAndComment1.png">
 
 <img src = "images/linkAndComment2.png">
 
 ## 配對 ##
 
+#### 點擊左側導覽列的愛心圖示 ####
+#### 每天的配對機會有三次 ####
 <img src = "images/linkMe1.png">
 
 <img src = "images/LinkMe2.png">
 
 <img src = "images/linkMe3.png">
 
+#### 配對完成後，首頁會顯示每天配對到的對象 ####
 <img src = ""images/linkMe4.png>
