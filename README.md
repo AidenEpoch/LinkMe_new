@@ -68,3 +68,5 @@ https://linkmeabc.vip
 
 <img src = "LinkMe系統架構圖.png">
 
+# 核心功能介紹 #
+
