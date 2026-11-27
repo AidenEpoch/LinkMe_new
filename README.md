@@ -71,4 +71,4 @@ https://linkmeabc.vip
 # 核心功能介紹 #
 
 ### 登入畫面 ###
-<img src = "images/index.png">
+<img src = "images/indexPage.png">
