@@ -64,4 +64,7 @@ https://linkmeabc.vip
 
 <img src = "linkme_local_EER.png">
 
+# 系統架構圖 #
+
+<img src = "LinkMe系統架構圖.png">
 
