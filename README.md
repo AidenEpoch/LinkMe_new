@@ -136,4 +136,35 @@ https://linkmeabc.vip
 <img src = "images/linkMe3.png">
 
 #### 配對完成後，首頁會顯示每天配對到的對象 ####
-<img src = ""images/linkMe4.png>
+<img src = "images/linkMe4.png">
+
+## 聊天功能 ##
+
+### 可以和其他用戶聊天 ###
+#### 點選右下方的訊息 ####
+<img src = "images/message.png">
+
+#### 如果已經向其他用戶發起聊天，則聊天室的視窗如下 ####
+<img src = "images/message2.png">
+
+## 帳戶權限控管 ##
+
+#### 可以在用戶個人頁面點擊編輯個人檔案 ####
+<img src = "images/editUser.png">
+
+#### 進入後點選帳號隱私設定，並接續操作 ####
+<img src = "images/private1.png">
+
+<img src = "images/private2.png">
+
+#### 如果遇到設定為非公開的其他用戶，則無法閱覽其貼文 ####
+<img src = "images/private3.png">
+
+#### 此時點擊追蹤便能發送追蹤請求 ####
+<img src = "images/private4.png">
+
+#### 發送請求後等待對方用戶接受(或拒絕) ####
+<img src = "images/private5.png">
+
+#### 對方接受後，即可成功追蹤對方，並且閱覽對方的貼文 ####
+<img src = "images/private6.png">
