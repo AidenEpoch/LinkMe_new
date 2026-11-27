@@ -108,10 +108,28 @@ https://linkmeabc.vip
 
 ### 創建貼文: ###
 
+#### 先點選左側導覽列第一個(筆記本和筆)圖示:
+
 <img src = "images/createPost1.png">
 
 <img src = "images/createPost2.png">
 
 <img src = "images/createPost3.png">
 
+#### 創建完貼文之後會回到用戶個空間 ####
 <img src = "images/createPost4.png">
+
+### 對貼文按讚 ###
+<img src = "images/likeAndComment1.png">
+
+<img src = "images/linkAndComment2.png">
+
+## 配對 ##
+
+<img src = "images/linkMe1.png">
+
+<img src = "images/LinkMe2.png">
+
+<img src = "images/linkMe3.png">
+
+<img src = ""images/linkMe4.png>
