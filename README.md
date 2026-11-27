@@ -70,31 +70,48 @@ https://linkmeabc.vip
 
 # 核心功能介紹 #
 
-### 登入畫面 ###
+## 登入畫面 ##
 <img src = "images/loginPage.png">
 
-### 註冊畫面 ###
+## 註冊畫面 ##
 <img src = "images/registerPage.png">
 
-### 註冊認證 ###
-註冊時要認證電子郵件:
+## 註冊認證 ##
+
+### 註冊時要認證電子郵件: ###
+
 <img src = "images/verifyPage.png">
 
-linkmeabc.vip會透過 resend 提供的驗證信發送功能寄送發送信到申請信箱:
+### linkmeabc.vip會透過 resend 提供的驗證信發送功能寄送發送信到申請信箱: ###
+
 <img src = "images/verifyMail.png">
 
-註冊成功的頁面:
+### 註冊成功的頁面: ###
+
 <img src = "images/verifySuccess.png">
 
-### 首頁 ###
+## 首頁 ##
 <img src = "images/indexPage.png">
 
 ## 社群頁面 ###
 <img src = "images/club.png">
 
-創建社群:
+### 創建社群: ###
+
 <img src = "images/createClub1.png">
 
 <img src = "images/createClub2.png">
 
 <img src = "images/createClub3.png">
+
+## 貼文 ##
+
+### 創建貼文: ###
+
+<img src = "images/createPost1.png">
+
+<img src = "images/createPost2.png">
+
+<img src = "images/createPost3.png">
+
+<img src = "images/createPost4.png">
